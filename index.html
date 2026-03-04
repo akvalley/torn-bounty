@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torn Bounty Board</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Torn Bounty Board</h1>
+    <div id="api-key-section">
+      <input
+        type="password"
+        id="api-key-input"
+        placeholder="Enter your Torn API key"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="save-key-btn">Save Key</button>
+      <button id="clear-key-btn" class="secondary">Clear Key</button>
+    </div>
+    <div id="status-bar">
+      <span id="status-msg"></span>
+      <span id="cors-badge" hidden></span>
+      <button id="refresh-btn" disabled>Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="filters">
+      <label>
+        Min level
+        <input type="number" id="filter-level-min" min="1" max="100" placeholder="1" />
+      </label>
+      <label>
+        Max level
+        <input type="number" id="filter-level-max" min="1" max="100" placeholder="100" />
+      </label>
+      <label>
+        Min bounty ($)
+        <input type="number" id="filter-bounty-min" min="0" placeholder="0" />
+      </label>
+      <label>
+        Sort by
+        <select id="sort-select">
+          <option value="reward-desc">Reward ↓</option>
+          <option value="reward-asc">Reward ↑</option>
+          <option value="level-asc">Level ↑</option>
+          <option value="level-desc">Level ↓</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="bounty-count"></div>
+
+    <div id="bounty-list" aria-live="polite">
+      <p class="placeholder">Enter your API key above to load bounties.</p>
+    </div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

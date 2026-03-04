@@ -1,0 +1,264 @@
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --surface:   #1a1d27;
+  --border:    #2a2d3a;
+  --accent:    #e8a838;
+  --accent-dim:#a87520;
+  --text:      #e2e4ec;
+  --muted:     #7a7f9a;
+  --danger:    #e85c5c;
+  --radius:    6px;
+  --font:      'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+header h1 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+#api-key-section {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#api-key-input {
+  flex: 1;
+  min-width: 220px;
+  max-width: 380px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: monospace;
+}
+
+#api-key-input:focus { outline: 1px solid var(--accent); }
+
+#status-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#status-msg {
+  font-size: 12px;
+  color: var(--muted);
+  flex: 1;
+}
+
+#status-msg.error { color: var(--danger); }
+#status-msg.ok    { color: #6ec97a; }
+
+.cors-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  cursor: help;
+  white-space: nowrap;
+}
+.cors-ok   { background: #1e3a2a; color: #6ec97a; border: 1px solid #2e5a3a; }
+.cors-warn { background: #3a2e1a; color: #e8a838; border: 1px solid #5a4a2a; }
+.cors-fail { background: #3a1a1a; color: var(--danger); border: 1px solid #5a2a2a; }
+
+/* ── Buttons ────────────────────────────────────────────── */
+button {
+  background: var(--accent);
+  color: #0f1117;
+  border: none;
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+button:hover:not(:disabled) { background: #f0b84a; }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+button.secondary {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--muted); }
+
+/* ── Filters ────────────────────────────────────────────── */
+#filters {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 14px 20px 0;
+}
+
+#filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+#filters input,
+#filters select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: 13px;
+  width: 110px;
+}
+
+#filters select { cursor: pointer; }
+
+#filters input:focus,
+#filters select:focus { outline: 1px solid var(--accent); }
+
+/* ── Bounty count ───────────────────────────────────────── */
+#bounty-count {
+  padding: 10px 20px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── Bounty list ────────────────────────────────────────── */
+#bounty-list {
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.placeholder {
+  color: var(--muted);
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* ── Bounty card ────────────────────────────────────────── */
+.bounty-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s;
+}
+
+.bounty-card:hover { border-color: var(--accent-dim); }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.player-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.player-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.player-name a:hover { color: var(--accent); }
+
+.reward {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.card-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.qty-badge {
+  display: inline-block;
+  background: var(--accent-dim);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.card-reason {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+.attack-btn {
+  align-self: flex-start;
+  padding: 5px 12px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* ── Loading spinner ────────────────────────────────────── */
+.loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+  color: var(--muted);
+}
+
+.spinner {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
