@@ -1,15 +1,14 @@
 const BASE_URL = 'https://api.torn.com';
+const PAGE_SIZE = 100; // Torn API v2 returns up to 100 bounties per request
 
 /**
- * Fetch active bounties from the Torn API v2.
- * The API key is appended as a query parameter per Torn's spec and
- * is never sent to any server other than api.torn.com.
- *
+ * Fetch a single page of bounties from the Torn API v2.
  * @param {string} apiKey
- * @returns {Promise<Array>} Array of normalised bounty objects
+ * @param {number} offset
+ * @returns {Promise<Array>} Normalised bounty objects for this page
  */
-export async function fetchBounties(apiKey) {
-  const url = `${BASE_URL}/v2/torn/bounties?offset=0&key=${encodeURIComponent(apiKey)}`;
+async function fetchBountyPage(apiKey, offset = 0) {
+  const url = `${BASE_URL}/v2/torn/bounties?offset=${offset}&key=${encodeURIComponent(apiKey)}`;
 
   const response = await fetch(url);
 
@@ -19,14 +18,34 @@ export async function fetchBounties(apiKey) {
 
   const data = await response.json();
 
-  // Uncomment to inspect raw response shape during development:
-  // console.log('[Torn API] raw response:', JSON.stringify(data, null, 2));
-
   if (data.error) {
     throw new TornApiError(data.error.code, data.error.error);
   }
 
   return normaliseBounties(data.bounties ?? []);
+}
+
+/**
+ * Fetch ALL bounties by paging through the API until a short page signals the end.
+ * @param {string} apiKey
+ * @param {(count: number) => void} [onProgress] Called after each page with running total
+ * @returns {Promise<Array>} All normalised bounty objects
+ */
+export async function fetchAllBounties(apiKey, onProgress) {
+  let all = [];
+  let offset = 0;
+
+  while (true) {
+    const page = await fetchBountyPage(apiKey, offset);
+    all = all.concat(page);
+    onProgress?.(all.length);
+
+    // A page shorter than PAGE_SIZE means we've reached the last page
+    if (page.length < PAGE_SIZE) break;
+    offset += PAGE_SIZE;
+  }
+
+  return all;
 }
 
 /**

@@ -1,5 +1,5 @@
 import { saveApiKey, loadApiKey, clearApiKey, hasApiKey } from './storage.js';
-import { fetchBounties, checkCors, tornErrorMessage } from './api.js';
+import { fetchAllBounties, checkCors, tornErrorMessage } from './api.js';
 import { setStatus, setCorsBadge, showLoading, showError, showPlaceholder, renderBounties } from './ui.js';
 
 // ── Element refs ─────────────────────────────────────────
@@ -81,9 +81,11 @@ async function loadBounties() {
   refreshBtn.disabled = true;
 
   try {
-    allBounties = await fetchBounties(key);
+    allBounties = await fetchAllBounties(key, (count) => {
+      setStatus(`Loading… ${count} bounties so far`, '');
+    });
     const timestamp = new Date().toLocaleTimeString();
-    setStatus(`Updated at ${timestamp}`, 'ok');
+    setStatus(`Updated at ${timestamp} · ${allBounties.length} total`, 'ok');
     applyFiltersAndRender();
 
     // Run CORS check once after first successful fetch
