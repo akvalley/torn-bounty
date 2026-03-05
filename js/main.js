@@ -17,6 +17,8 @@ const filterQtyMin    = document.getElementById('filter-qty-min');
 const filterBountyMin = document.getElementById('filter-bounty-min');
 const filterTotalMin  = document.getElementById('filter-total-min');
 const sortSelect      = document.getElementById('sort-select');
+const filterToggleBtn = document.getElementById('filter-toggle');
+const filtersEl       = document.getElementById('filters');
 
 // ── App state ─────────────────────────────────────────────
 let allBounties = [];
@@ -64,6 +66,12 @@ refreshBtn.addEventListener('click', loadBounties);
   filterLevelMin, filterLevelMax, filterQtyMin,
   filterBountyMin, filterTotalMin, sortSelect,
 ].forEach(el => el.addEventListener('input', applyFiltersAndRender));
+
+// Toggle filter panel on mobile
+filterToggleBtn.addEventListener('click', () => {
+  const isOpen = filtersEl.classList.toggle('open');
+  filterToggleBtn.textContent = isOpen ? 'Filters ▴' : 'Filters ▾';
+});
 
 // If the user clicks into the masked input, clear it so they can type
 keyInput.addEventListener('focus', () => {
