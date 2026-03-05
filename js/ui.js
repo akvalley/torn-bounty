@@ -32,10 +32,11 @@ export function showPlaceholder(msg) {
 
 /**
  * Render bounty cards.
- * @param {Array} bounties — already filtered & sorted
- * @param {number} total   — total before filtering (for count display)
+ * @param {Array}  bounties — already filtered & sorted
+ * @param {number} total    — total before filtering (for count display)
+ * @param {number} myLevel  — player's own level (0 = not set); enables fair-fight highlight
  */
-export function renderBounties(bounties, total) {
+export function renderBounties(bounties, total, myLevel = 0) {
   if (bounties.length === 0) {
     list.innerHTML = '<p class="placeholder">No bounties match the current filters.</p>';
     countEl.textContent = `0 of ${total} bounties`;
@@ -44,20 +45,34 @@ export function renderBounties(bounties, total) {
 
   countEl.textContent = `${bounties.length} of ${total} ${total === 1 ? 'bounty' : 'bounties'}`;
 
-  list.innerHTML = bounties.map(cardHtml).join('');
+  list.innerHTML = bounties.map(b => cardHtml(b, myLevel)).join('');
 }
 
 // ── Card template ────────────────────────────────────────
 
-function cardHtml(b) {
+function cardHtml(b, myLevel = 0) {
   const profileUrl = `https://www.torn.com/profiles.php?XID=${b.id}`;
   const attackUrl  = `https://www.torn.com/loader.php?sid=attack&user2ID=${b.id}`;
-  const expiresIn  = b.validUntil ? `Expires ${timeUntil(b.validUntil)}` : '';
   const listedBy   = b.listerName ? `Listed by ${escHtml(b.listerName)}` : 'Anonymous';
   const qtyBadge   = b.quantity > 1 ? `<span class="qty-badge">×${b.quantity}</span>` : '';
 
+  // Expiring soon: under 60 minutes remaining
+  const now          = Math.floor(Date.now() / 1000);
+  const secsLeft     = b.validUntil - now;
+  const expiringSoon = b.validUntil > 0 && secsLeft > 0 && secsLeft < 3600;
+  const expiresIn    = b.validUntil ? `Expires ${timeUntil(b.validUntil)}` : '';
+  const expiryClass  = expiringSoon ? ' class="expires-soon-text"' : '';
+
+  // Fair-fight: target within ±10 levels of the player's level
+  const fairFight = myLevel > 0 && Math.abs(b.level - myLevel) <= 10;
+
+  const cardClass = ['bounty-card',
+    expiringSoon ? 'expiring-soon' : '',
+    fairFight    ? 'fair-fight'    : '',
+  ].filter(Boolean).join(' ');
+
   return `
-    <article class="bounty-card">
+    <article class="${cardClass}">
       <div class="card-header">
         <div class="player-name">
           <a href="${profileUrl}" target="_blank" rel="noopener">${escHtml(b.name)}</a>
@@ -73,7 +88,7 @@ function cardHtml(b) {
       <div class="card-meta">
         <span>Level ${b.level}</span>
         <span>${listedBy}</span>
-        ${expiresIn ? `<span>${expiresIn}</span>` : ''}
+        ${expiresIn ? `<span${expiryClass}>${expiresIn}</span>` : ''}
       </div>
       ${b.reason ? `<div class="card-reason">${escHtml(b.reason)}</div>` : ''}
       <a href="${attackUrl}" target="_blank" rel="noopener">

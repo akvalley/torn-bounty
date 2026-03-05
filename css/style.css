@@ -76,6 +76,26 @@ header h1 {
 #status-msg.error { color: var(--danger); }
 #status-msg.ok    { color: #6ec97a; }
 
+#countdown-display {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 4ch;
+}
+
+#auto-refresh-select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  padding: 4px 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#auto-refresh-select:focus { outline: 1px solid var(--accent); }
+
 #key-privacy-note {
   font-size: 11px;
   color: var(--muted);
@@ -184,6 +204,11 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
 }
 
 .bounty-card:hover { border-color: var(--accent-dim); }
+
+/* ── Card states ────────────────────────────────────────── */
+.bounty-card.expiring-soon { border-color: var(--danger); }
+.bounty-card.fair-fight    { border-color: #4a9eff; }
+.expires-soon-text         { color: var(--danger); }
 
 .card-header {
   display: flex;
@@ -294,8 +319,9 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
   #filters          { display: none; grid-template-columns: 1fr 1fr; padding: 12px 16px 0; }
   #filters.open     { display: grid; }
 
-  /* Name search spans both columns */
-  #filters label.filter-wide { grid-column: 1 / -1; }
+  /* Name search and reset button span both columns */
+  #filters label.filter-wide,
+  #reset-filters-btn { grid-column: 1 / -1; }
 
   /* All inputs fill their label */
   #filters input,

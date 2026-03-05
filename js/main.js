@@ -1,4 +1,7 @@
-import { saveApiKey, loadApiKey, clearApiKey, hasApiKey } from './storage.js';
+import { saveApiKey, loadApiKey, clearApiKey,
+         saveFilters, loadFilters,
+         saveMyLevel, loadMyLevel,
+         saveAutoRefresh, loadAutoRefresh } from './storage.js';
 import { fetchAllBounties, tornErrorMessage } from './api.js';
 import { setStatus, showLoading, showError, showPlaceholder, renderBounties } from './ui.js';
 
@@ -20,11 +23,30 @@ const sortSelect      = document.getElementById('sort-select');
 const filterToggleBtn = document.getElementById('filter-toggle');
 const filtersEl       = document.getElementById('filters');
 
+const resetFiltersBtn   = document.getElementById('reset-filters-btn');
+const myLevelInput      = document.getElementById('my-level');
+const autoRefreshSelect = document.getElementById('auto-refresh-select');
+const countdownDisplay  = document.getElementById('countdown-display');
+
 // ── App state ─────────────────────────────────────────────
-let allBounties = [];
+let allBounties         = [];
+let refreshTimeoutId    = null;
+let countdownIntervalId = null;
 
 // ── Init ──────────────────────────────────────────────────
 (function init() {
+  // Restore persisted filter state
+  const savedFilters = loadFilters();
+  if (savedFilters) applyFilterValues(savedFilters);
+
+  const savedLevel = loadMyLevel();
+  if (savedLevel) myLevelInput.value = savedLevel;
+
+  const savedInterval = loadAutoRefresh();
+  if (savedInterval) autoRefreshSelect.value = String(savedInterval);
+
+  updateFilterToggleBadge();
+
   const stored = loadApiKey();
   if (stored) {
     keyInput.value = '••••••••••••••••'; // mask stored key visually
@@ -54,6 +76,8 @@ clearKeyBtn.addEventListener('click', () => {
   keyInput.value = '';
   allBounties = [];
   setReady(false);
+  clearSchedule();
+  countdownDisplay.textContent = '';
   setStatus('API key cleared.', '');
   showPlaceholder('Enter your API key above to load bounties.');
 });
@@ -65,12 +89,35 @@ refreshBtn.addEventListener('click', loadBounties);
   filterName, filterAnonymous, filterHasReason,
   filterLevelMin, filterLevelMax, filterQtyMin,
   filterBountyMin, filterTotalMin, sortSelect,
+  myLevelInput,
 ].forEach(el => el.addEventListener('input', applyFiltersAndRender));
 
 // Toggle filter panel on mobile
 filterToggleBtn.addEventListener('click', () => {
-  const isOpen = filtersEl.classList.toggle('open');
-  filterToggleBtn.textContent = isOpen ? 'Filters ▴' : 'Filters ▾';
+  filtersEl.classList.toggle('open');
+  updateFilterToggleBadge();
+});
+
+// Reset all filters to defaults
+resetFiltersBtn.addEventListener('click', () => {
+  filterName.value      = '';
+  filterAnonymous.value = 'all';
+  filterHasReason.value = 'all';
+  filterLevelMin.value  = '';
+  filterLevelMax.value  = '';
+  filterQtyMin.value    = '';
+  filterBountyMin.value = '';
+  filterTotalMin.value  = '';
+  sortSelect.value      = 'reward-desc';
+  saveFilters({});
+  applyFiltersAndRender();
+});
+
+// Auto-refresh interval change
+autoRefreshSelect.addEventListener('change', () => {
+  saveAutoRefresh(autoRefreshSelect.value);
+  if (allBounties.length > 0) scheduleNextRefresh();
+  else { clearSchedule(); countdownDisplay.textContent = ''; }
 });
 
 // If the user clicks into the masked input, clear it so they can type
@@ -90,6 +137,7 @@ async function loadBounties() {
     return;
   }
 
+  clearSchedule();
   setStatus('Loading…', '');
   showLoading();
   refreshBtn.disabled = true;
@@ -109,6 +157,7 @@ async function loadBounties() {
     allBounties = [];
   } finally {
     refreshBtn.disabled = false;
+    scheduleNextRefresh();
   }
 }
 
@@ -121,6 +170,18 @@ function applyFiltersAndRender() {
   const qtyMin     = Number(filterQtyMin.value)    || 1;
   const bountyMin  = Number(filterBountyMin.value) || 0;
   const totalMin   = Number(filterTotalMin.value)  || 0;
+  const myLevel    = Number(myLevelInput.value)    || 0;
+
+  // Persist current filter state
+  saveFilters({
+    name: filterName.value, anonymous, hasReason,
+    levelMin: filterLevelMin.value, levelMax: filterLevelMax.value,
+    qtyMin:   filterQtyMin.value,   bountyMin: filterBountyMin.value,
+    totalMin: filterTotalMin.value, sort: sortSelect.value,
+  });
+  if (myLevel) saveMyLevel(myLevel);
+
+  updateFilterToggleBadge();
 
   let filtered = allBounties.filter(b => {
     if (nameQuery && !b.name.toLowerCase().includes(nameQuery)) return false;
@@ -137,7 +198,7 @@ function applyFiltersAndRender() {
   });
 
   filtered = sortBounties(filtered, sortSelect.value);
-  renderBounties(filtered, allBounties.length);
+  renderBounties(filtered, allBounties.length, myLevel);
 }
 
 function sortBounties(arr, mode) {
@@ -154,6 +215,75 @@ function sortBounties(arr, mode) {
       default:            return 0;
     }
   });
+}
+
+// ── Filter helpers ────────────────────────────────────────
+
+function applyFilterValues(f) {
+  if (f.name      != null) filterName.value      = f.name;
+  if (f.anonymous != null) filterAnonymous.value = f.anonymous;
+  if (f.hasReason != null) filterHasReason.value = f.hasReason;
+  if (f.levelMin  != null) filterLevelMin.value  = f.levelMin;
+  if (f.levelMax  != null) filterLevelMax.value  = f.levelMax;
+  if (f.qtyMin    != null) filterQtyMin.value    = f.qtyMin;
+  if (f.bountyMin != null) filterBountyMin.value = f.bountyMin;
+  if (f.totalMin  != null) filterTotalMin.value  = f.totalMin;
+  if (f.sort      != null) sortSelect.value      = f.sort;
+}
+
+function updateFilterToggleBadge() {
+  const active = [
+    filterName.value.trim()    !== '',
+    filterAnonymous.value      !== 'all',
+    filterHasReason.value      !== 'all',
+    filterLevelMin.value !== '' && filterLevelMin.value !== '1',
+    filterLevelMax.value !== '' && filterLevelMax.value !== '100',
+    filterQtyMin.value   !== '' && filterQtyMin.value   !== '1',
+    filterBountyMin.value !== '' && filterBountyMin.value !== '0',
+    filterTotalMin.value  !== '' && filterTotalMin.value  !== '0',
+    sortSelect.value       !== 'reward-desc',
+  ].filter(Boolean).length;
+
+  const isOpen = filtersEl.classList.contains('open');
+  const arrow  = isOpen ? '▴' : '▾';
+  filterToggleBtn.textContent = active > 0
+    ? `Filters (${active}) ${arrow}`
+    : `Filters ${arrow}`;
+}
+
+// ── Auto-refresh ──────────────────────────────────────────
+
+function scheduleNextRefresh() {
+  clearSchedule();
+  const secs = Number(autoRefreshSelect.value);
+  if (!secs) { countdownDisplay.textContent = ''; return; }
+
+  const deadline = Date.now() + secs * 1000;
+
+  countdownIntervalId = setInterval(() => {
+    const remaining = Math.ceil((deadline - Date.now()) / 1000);
+    if (remaining <= 0) {
+      countdownDisplay.textContent = '';
+      clearInterval(countdownIntervalId);
+    } else {
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      countdownDisplay.textContent = `↻ ${m}:${s.toString().padStart(2, '0')}`;
+    }
+  }, 500);
+
+  refreshTimeoutId = setTimeout(() => {
+    clearInterval(countdownIntervalId);
+    countdownDisplay.textContent = '';
+    loadBounties();
+  }, secs * 1000);
+}
+
+function clearSchedule() {
+  clearTimeout(refreshTimeoutId);
+  clearInterval(countdownIntervalId);
+  refreshTimeoutId    = null;
+  countdownIntervalId = null;
 }
 
 function setReady(ready) {

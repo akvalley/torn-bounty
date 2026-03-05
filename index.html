@@ -25,7 +25,14 @@
     </p>
     <div id="status-bar">
       <span id="status-msg"></span>
-<button id="refresh-btn" disabled>Refresh</button>
+      <span id="countdown-display"></span>
+      <select id="auto-refresh-select" title="Auto-refresh interval">
+        <option value="0">Auto: Off</option>
+        <option value="120">Auto: 2m</option>
+        <option value="300">Auto: 5m</option>
+        <option value="600">Auto: 10m</option>
+      </select>
+      <button id="refresh-btn" disabled>Refresh</button>
     </div>
   </header>
 
@@ -85,6 +92,12 @@
           <option value="qty-asc">Quantity ↑</option>
         </select>
       </label>
+      <label>
+        My level
+        <input type="number" id="my-level" min="1" max="100" placeholder="—"
+               title="Highlights bounties within ±10 levels (approx. fair fight range)" />
+      </label>
+      <button id="reset-filters-btn" class="secondary">Reset</button>
     </div>
 
     <div id="bounty-count"></div>
