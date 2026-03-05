@@ -90,6 +90,17 @@
       </section>
 
       <section class="help-section">
+        <h3>Player Status</h3>
+        <ul>
+          <li>Once you have filtered to <strong>100 or fewer</strong> visible bounties, the <strong>Check Status</strong> button appears active below the filter bar.</li>
+          <li>Clicking it fetches the live status of every visible target directly from the Torn API and displays a badge on each card.</li>
+          <li>Status badges: <strong>● Okay</strong> · <strong>✚ Hosp</strong> (with time remaining) · <strong>✈ Traveling</strong> · <strong>⚑ Jail</strong> · <strong>⊘ Federal</strong></li>
+          <li>Status is a snapshot — use <strong>↻ Re-check</strong> to refresh it. Bounty data refreshes clear status automatically.</li>
+          <li>Hovering a badge shows the full status description from Torn.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
         <h3>Card Highlights</h3>
         <ul>
           <li><span class="help-swatch red"></span> <strong>Red border</strong> — bounty expires in under 60 minutes. The expiry time also turns red.</li>
@@ -167,7 +178,13 @@
       <button id="reset-filters-btn" class="secondary">Reset</button>
     </div>
 
-    <div id="bounty-count"></div>
+    <div id="bounty-count">
+      <span id="bounty-count-text"></span>
+      <div class="status-check-row">
+        <button id="check-status-btn" class="secondary" disabled>Check Status</button>
+        <span id="status-checked-time"></span>
+      </div>
+    </div>
 
     <div id="bounty-list" aria-live="polite">
       <p class="placeholder">Enter your API key above to load bounties.</p>

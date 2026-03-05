@@ -1,5 +1,5 @@
 const list     = document.getElementById('bounty-list');
-const countEl  = document.getElementById('bounty-count');
+const countEl  = document.getElementById('bounty-count-text');
 const statusEl = document.getElementById('status-msg');
 
 // ── Status bar ──────────────────────────────────────────
@@ -32,11 +32,12 @@ export function showPlaceholder(msg) {
 
 /**
  * Render bounty cards.
- * @param {Array}  bounties — already filtered & sorted
- * @param {number} total    — total before filtering (for count display)
- * @param {number} myLevel  — player's own level (0 = not set); enables fair-fight highlight
+ * @param {Array}  bounties  — already filtered & sorted
+ * @param {number} total     — total before filtering (for count display)
+ * @param {number} myLevel   — player's own level (0 = not set); enables fair-fight highlight
+ * @param {Object} statusMap — map of { [targetId]: {state, description, until} }
  */
-export function renderBounties(bounties, total, myLevel = 0) {
+export function renderBounties(bounties, total, myLevel = 0, statusMap = {}) {
   if (bounties.length === 0) {
     list.innerHTML = '<p class="placeholder">No bounties match the current filters.</p>';
     countEl.textContent = `0 of ${total} bounties`;
@@ -45,12 +46,12 @@ export function renderBounties(bounties, total, myLevel = 0) {
 
   countEl.textContent = `${bounties.length} of ${total} ${total === 1 ? 'bounty' : 'bounties'}`;
 
-  list.innerHTML = bounties.map(b => cardHtml(b, myLevel)).join('');
+  list.innerHTML = bounties.map(b => cardHtml(b, myLevel, statusMap[b.id] ?? null)).join('');
 }
 
 // ── Card template ────────────────────────────────────────
 
-function cardHtml(b, myLevel = 0) {
+function cardHtml(b, myLevel = 0, status = null) {
   const profileUrl = `https://www.torn.com/profiles.php?XID=${b.id}`;
   const huntUrl    = `https://www.torn.com/bounties.php?userID=${b.id}`;
   const listedBy   = b.listerName ? `Listed by ${escHtml(b.listerName)}` : 'Anonymous';
@@ -89,6 +90,7 @@ function cardHtml(b, myLevel = 0) {
         <span>Level ${b.level}</span>
         <span>${listedBy}</span>
         ${expiresIn ? `<span${expiryClass}>${expiresIn}</span>` : ''}
+        ${status ? statusBadgeHtml(status) : ''}
       </div>
       ${b.reason ? `<div class="card-reason">${escHtml(b.reason)}</div>` : ''}
       <a href="${huntUrl}" target="_blank" rel="noopener">
@@ -98,6 +100,19 @@ function cardHtml(b, myLevel = 0) {
 }
 
 // ── Helpers ──────────────────────────────────────────────
+
+function statusBadgeHtml(s) {
+  const untilStr = s.until ? ` · ${timeUntil(s.until)}` : '';
+  const cfg = {
+    'Okay':      { icon: '●', cls: 'ok',        label: 'Okay' },
+    'Hospital':  { icon: '✚', cls: 'hospital',  label: `Hosp${untilStr}` },
+    'Traveling': { icon: '✈', cls: 'traveling', label: 'Traveling' },
+    'Jail':      { icon: '⚑', cls: 'jail',      label: `Jail${untilStr}` },
+    'Federal':   { icon: '⊘', cls: 'federal',   label: 'Federal' },
+  };
+  const c = cfg[s.state] ?? { icon: '?', cls: 'unknown', label: s.state };
+  return `<span class="status-badge status-${c.cls}" title="${escHtml(s.description)}">${c.icon} ${c.label}</span>`;
+}
 
 function escHtml(str) {
   return String(str)

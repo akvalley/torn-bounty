@@ -2,7 +2,7 @@ import { saveApiKey, loadApiKey, clearApiKey,
          saveFilters, loadFilters,
          saveMyLevel, loadMyLevel,
          saveAutoRefresh, loadAutoRefresh } from './storage.js';
-import { fetchAllBounties, tornErrorMessage } from './api.js';
+import { fetchAllBounties, fetchStatusBatch, tornErrorMessage } from './api.js';
 import { setStatus, showLoading, showError, showPlaceholder, renderBounties } from './ui.js';
 
 // ── Element refs ─────────────────────────────────────────
@@ -29,11 +29,17 @@ const autoRefreshSelect = document.getElementById('auto-refresh-select');
 const countdownDisplay  = document.getElementById('countdown-display');
 const helpBtn           = document.getElementById('help-btn');
 const helpDialog        = document.getElementById('help-dialog');
+const checkStatusBtn    = document.getElementById('check-status-btn');
+const statusCheckedTime = document.getElementById('status-checked-time');
 
 // ── App state ─────────────────────────────────────────────
 let allBounties         = [];
+let currentFiltered     = [];   // last rendered set; used for status batch IDs
+let statusMap           = {};   // { [targetId]: {state, description, until} }
 let refreshTimeoutId    = null;
 let countdownIntervalId = null;
+
+const STATUS_CHECK_LIMIT = 100;
 
 // ── Init ──────────────────────────────────────────────────
 (function init() {
@@ -76,10 +82,15 @@ saveKeyBtn.addEventListener('click', () => {
 clearKeyBtn.addEventListener('click', () => {
   clearApiKey();
   keyInput.value = '';
-  allBounties = [];
+  allBounties    = [];
+  currentFiltered = [];
+  statusMap      = {};
   setReady(false);
   clearSchedule();
-  countdownDisplay.textContent = '';
+  countdownDisplay.textContent  = '';
+  statusCheckedTime.textContent = '';
+  checkStatusBtn.disabled = true;
+  checkStatusBtn.textContent = 'Check Status';
   setStatus('API key cleared.', '');
   showPlaceholder('Enter your API key above to load bounties.');
 });
@@ -127,6 +138,31 @@ helpBtn.addEventListener('click', () => helpDialog.showModal());
 document.getElementById('help-close-btn').addEventListener('click', () => helpDialog.close());
 helpDialog.addEventListener('click', (e) => { if (e.target === helpDialog) helpDialog.close(); });
 
+// Check Status
+checkStatusBtn.addEventListener('click', async () => {
+  const key = loadApiKey();
+  if (!key || !currentFiltered.length) return;
+
+  const ids = currentFiltered.map(b => b.id);
+
+  checkStatusBtn.disabled = true;
+  checkStatusBtn.textContent = 'Checking…';
+  statusCheckedTime.textContent = '';
+
+  try {
+    const batch = await fetchStatusBatch(key, ids);
+    Object.assign(statusMap, batch);
+    applyFiltersAndRender();
+    statusCheckedTime.textContent = `as of ${new Date().toLocaleTimeString()}`;
+    checkStatusBtn.textContent = '↻ Re-check';
+  } catch (err) {
+    statusCheckedTime.textContent = 'Status check failed';
+    checkStatusBtn.textContent = 'Check Status';
+  } finally {
+    updateCheckStatusBtn(currentFiltered.length);
+  }
+});
+
 // If the user clicks into the masked input, clear it so they can type
 keyInput.addEventListener('focus', () => {
   if (keyInput.value === '••••••••••••••••') keyInput.value = '';
@@ -148,6 +184,11 @@ async function loadBounties() {
   setStatus('Loading…', '');
   showLoading();
   refreshBtn.disabled = true;
+
+  // Clear stale status data from previous load
+  statusMap = {};
+  statusCheckedTime.textContent = '';
+  checkStatusBtn.textContent = 'Check Status';
 
   try {
     allBounties = await fetchAllBounties(key, (count) => {
@@ -205,7 +246,9 @@ function applyFiltersAndRender() {
   });
 
   filtered = sortBounties(filtered, sortSelect.value);
-  renderBounties(filtered, allBounties.length, myLevel);
+  currentFiltered = filtered;
+  renderBounties(filtered, allBounties.length, myLevel, statusMap);
+  updateCheckStatusBtn(filtered.length);
 }
 
 function sortBounties(arr, mode) {
@@ -256,6 +299,19 @@ function updateFilterToggleBadge() {
   filterToggleBtn.textContent = active > 0
     ? `Filters (${active}) ${arrow}`
     : `Filters ${arrow}`;
+}
+
+function updateCheckStatusBtn(visibleCount) {
+  const hasKey   = !!loadApiKey();
+  const canCheck = hasKey && visibleCount > 0 && visibleCount <= STATUS_CHECK_LIMIT;
+  checkStatusBtn.disabled = !canCheck;
+  if (!hasKey || visibleCount === 0) {
+    checkStatusBtn.title = '';
+  } else if (visibleCount > STATUS_CHECK_LIMIT) {
+    checkStatusBtn.title = `Filter to ≤${STATUS_CHECK_LIMIT} bounties to enable status check`;
+  } else {
+    checkStatusBtn.title = 'Fetch live status for all visible targets';
+  }
 }
 
 // ── Auto-refresh ──────────────────────────────────────────

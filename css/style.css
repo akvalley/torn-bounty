@@ -172,9 +172,49 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
 /* ── Bounty count ───────────────────────────────────────── */
 #bounty-count {
   padding: 10px 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#bounty-count-text {
   font-size: 12px;
   color: var(--muted);
+  flex: 1;
 }
+
+.status-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#check-status-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+#status-checked-time {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Status badges ──────────────────────────────────────── */
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.status-ok        { color: #6ec97a; }
+.status-hospital  { color: var(--danger); }
+.status-traveling { color: #4a9eff; }
+.status-jail      { color: #e89838; }
+.status-federal   { color: #c04040; }
+.status-unknown   { color: var(--muted); }
 
 /* ── Bounty list ────────────────────────────────────────── */
 #bounty-list {
