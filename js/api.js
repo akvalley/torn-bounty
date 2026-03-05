@@ -58,16 +58,21 @@ export async function fetchAllBounties(apiKey, onProgress) {
  */
 function normaliseBounties(raw) {
   if (!Array.isArray(raw)) return [];
-  return raw.map(b => ({
-    id:          b.target_id   ?? 0,
-    name:        b.target_name ?? 'Unknown',
-    level:       b.target_level ?? 0,
-    reward:      b.reward      ?? 0,
-    quantity:    b.quantity    ?? 1,
-    reason:      b.reason      ?? '',
-    listerName:  b.is_anonymous ? null : (b.lister_name ?? null),
-    validUntil:  b.valid_until  ?? 0,
-  }));
+  return raw.map(b => {
+    const reward   = b.reward   ?? 0;
+    const quantity = b.quantity ?? 1;
+    return {
+      id:         b.target_id    ?? 0,
+      name:       b.target_name  ?? 'Unknown',
+      level:      b.target_level ?? 0,
+      reward,
+      quantity,
+      totalValue: reward * quantity,
+      reason:     b.reason       ?? '',
+      listerName: b.is_anonymous ? null : (b.lister_name ?? null),
+      validUntil: b.valid_until  ?? 0,
+    };
+  });
 }
 
 

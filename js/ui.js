@@ -63,7 +63,12 @@ function cardHtml(b) {
           <a href="${profileUrl}" target="_blank" rel="noopener">${escHtml(b.name)}</a>
           ${qtyBadge}
         </div>
-        <div class="reward">${formatMoney(b.reward)}</div>
+        <div class="reward-block">
+          <div class="reward">${formatMoney(b.reward)}</div>
+          ${b.quantity > 1
+            ? `<div class="total-value">= ${formatMoney(b.totalValue)} total</div>`
+            : ''}
+        </div>
       </div>
       <div class="card-meta">
         <span>Level ${b.level}</span>

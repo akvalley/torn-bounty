@@ -31,6 +31,26 @@
 
   <main>
     <div id="filters">
+      <label class="filter-wide">
+        Name search
+        <input type="search" id="filter-name" placeholder="Search player name…" autocomplete="off" />
+      </label>
+      <label>
+        Anonymous
+        <select id="filter-anonymous">
+          <option value="all">All</option>
+          <option value="anonymous">Anonymous only</option>
+          <option value="named">Named only</option>
+        </select>
+      </label>
+      <label>
+        Has reason
+        <select id="filter-has-reason">
+          <option value="all">All</option>
+          <option value="yes">With reason</option>
+          <option value="no">No reason</option>
+        </select>
+      </label>
       <label>
         Min level
         <input type="number" id="filter-level-min" min="1" max="100" placeholder="1" />
@@ -40,16 +60,28 @@
         <input type="number" id="filter-level-max" min="1" max="100" placeholder="100" />
       </label>
       <label>
-        Min bounty ($)
+        Min quantity
+        <input type="number" id="filter-qty-min" min="1" placeholder="1" />
+      </label>
+      <label>
+        Min reward ($)
         <input type="number" id="filter-bounty-min" min="0" placeholder="0" />
+      </label>
+      <label>
+        Min total value ($)
+        <input type="number" id="filter-total-min" min="0" placeholder="0" />
       </label>
       <label>
         Sort by
         <select id="sort-select">
           <option value="reward-desc">Reward ↓</option>
           <option value="reward-asc">Reward ↑</option>
+          <option value="total-desc">Total value ↓</option>
+          <option value="total-asc">Total value ↑</option>
           <option value="level-asc">Level ↑</option>
           <option value="level-desc">Level ↓</option>
+          <option value="qty-desc">Quantity ↓</option>
+          <option value="qty-asc">Quantity ↑</option>
         </select>
       </label>
     </div>
