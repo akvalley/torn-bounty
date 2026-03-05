@@ -1,6 +1,6 @@
 import { saveApiKey, loadApiKey, clearApiKey, hasApiKey } from './storage.js';
-import { fetchAllBounties, checkCors, tornErrorMessage } from './api.js';
-import { setStatus, setCorsBadge, showLoading, showError, showPlaceholder, renderBounties } from './ui.js';
+import { fetchAllBounties, tornErrorMessage } from './api.js';
+import { setStatus, showLoading, showError, showPlaceholder, renderBounties } from './ui.js';
 
 // ── Element refs ─────────────────────────────────────────
 const keyInput    = document.getElementById('api-key-input');
@@ -14,8 +14,7 @@ const filterBountyMin = document.getElementById('filter-bounty-min');
 const sortSelect      = document.getElementById('sort-select');
 
 // ── App state ─────────────────────────────────────────────
-let allBounties   = [];
-let corsChecked   = false;
+let allBounties = [];
 
 // ── Init ──────────────────────────────────────────────────
 (function init() {
@@ -88,11 +87,6 @@ async function loadBounties() {
     setStatus(`Updated at ${timestamp} · ${allBounties.length} total`, 'ok');
     applyFiltersAndRender();
 
-    // Run CORS check once after first successful fetch
-    if (!corsChecked) {
-      corsChecked = true;
-      checkCors(key).then(setCorsBadge);
-    }
   } catch (err) {
     const msg = tornErrorMessage(err);
     setStatus(msg, 'error');

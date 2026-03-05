@@ -70,32 +70,6 @@ function normaliseBounties(raw) {
   }));
 }
 
-/**
- * Check whether api.torn.com sends permissive CORS headers.
- * Returns { ok: boolean, header: string|null, verdict: string }
- *
- * - header === '*'  → safe to deploy anywhere
- * - header is set but not '*' → origin-restricted, may break on deploy
- * - header is null  → header not readable or not sent; inconclusive
- * - ok === false    → request itself failed (CORS blocked or network error)
- */
-export async function checkCors(apiKey) {
-  const url = `${BASE_URL}/v2/torn/bounties?offset=0&key=${encodeURIComponent(apiKey)}`;
-  try {
-    const response = await fetch(url);
-    const header = response.headers.get('access-control-allow-origin');
-
-    if (header === '*') {
-      return { ok: true, header, verdict: 'open' };       // all origins allowed
-    } else if (header) {
-      return { ok: true, header, verdict: 'restricted' }; // specific origin only
-    } else {
-      return { ok: true, header: null, verdict: 'unknown' }; // header not exposed to JS
-    }
-  } catch {
-    return { ok: false, header: null, verdict: 'blocked' };
-  }
-}
 
 export class TornApiError extends Error {
   constructor(code, message) {

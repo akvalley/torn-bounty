@@ -1,27 +1,8 @@
 const list     = document.getElementById('bounty-list');
 const countEl  = document.getElementById('bounty-count');
 const statusEl = document.getElementById('status-msg');
-const corsBadge = document.getElementById('cors-badge');
 
 // ── Status bar ──────────────────────────────────────────
-
-/**
- * Show CORS check result as a badge next to the status message.
- * verdict: 'open' | 'restricted' | 'unknown' | 'blocked'
- */
-export function setCorsBadge({ verdict, header }) {
-  const configs = {
-    open:       { text: 'CORS: deploy-safe',      cls: 'cors-ok',      title: `Access-Control-Allow-Origin: ${header} — any domain can call this API` },
-    restricted: { text: 'CORS: origin-restricted', cls: 'cors-warn',    title: `Access-Control-Allow-Origin: ${header} — may break on other domains` },
-    unknown:    { text: 'CORS: test after deploy', cls: 'cors-warn',    title: 'Header not readable by JS. CORS works here but verify on deployed URL.' },
-    blocked:    { text: 'CORS: blocked',           cls: 'cors-fail',    title: 'Fetch failed — CORS is likely blocked from this origin.' },
-  };
-  const { text, cls, title } = configs[verdict] ?? configs.unknown;
-  corsBadge.textContent = text;
-  corsBadge.title = title;
-  corsBadge.className = `cors-badge ${cls}`;
-  corsBadge.hidden = false;
-}
 
 export function setStatus(msg, type = '') {
   statusEl.textContent = msg;
