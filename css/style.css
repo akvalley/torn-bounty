@@ -275,7 +275,7 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
   padding-top: 8px;
 }
 
-.attack-btn {
+.hunt-btn {
   align-self: flex-start;
   padding: 5px 12px;
   font-size: 12px;
@@ -447,7 +447,7 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
 
   /* ── Touch-friendly tap targets (≥ 44 px tall) ── */
   button       { min-height: 44px; }
-  .attack-btn  { align-self: stretch; text-align: center; min-height: 44px; }
+  .hunt-btn  { align-self: stretch; text-align: center; min-height: 44px; }
 
   /* ── Tighten outer padding on small screens ── */
   header        { padding: 12px 16px; }

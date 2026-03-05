@@ -52,7 +52,7 @@ export function renderBounties(bounties, total, myLevel = 0) {
 
 function cardHtml(b, myLevel = 0) {
   const profileUrl = `https://www.torn.com/profiles.php?XID=${b.id}`;
-  const attackUrl  = `https://www.torn.com/loader.php?sid=attack&user2ID=${b.id}`;
+  const huntUrl    = `https://www.torn.com/bounties.php?userID=${b.id}`;
   const listedBy   = b.listerName ? `Listed by ${escHtml(b.listerName)}` : 'Anonymous';
   const qtyBadge   = b.quantity > 1 ? `<span class="qty-badge">×${b.quantity}</span>` : '';
 
@@ -91,8 +91,8 @@ function cardHtml(b, myLevel = 0) {
         ${expiresIn ? `<span${expiryClass}>${expiresIn}</span>` : ''}
       </div>
       ${b.reason ? `<div class="card-reason">${escHtml(b.reason)}</div>` : ''}
-      <a href="${attackUrl}" target="_blank" rel="noopener">
-        <button class="attack-btn">Attack</button>
+      <a href="${huntUrl}" target="_blank" rel="noopener">
+        <button class="hunt-btn">Hunt</button>
       </a>
     </article>`;
 }
