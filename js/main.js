@@ -27,6 +27,8 @@ const resetFiltersBtn   = document.getElementById('reset-filters-btn');
 const myLevelInput      = document.getElementById('my-level');
 const autoRefreshSelect = document.getElementById('auto-refresh-select');
 const countdownDisplay  = document.getElementById('countdown-display');
+const helpBtn           = document.getElementById('help-btn');
+const helpDialog        = document.getElementById('help-dialog');
 
 // ── App state ─────────────────────────────────────────────
 let allBounties         = [];
@@ -119,6 +121,11 @@ autoRefreshSelect.addEventListener('change', () => {
   if (allBounties.length > 0) scheduleNextRefresh();
   else { clearSchedule(); countdownDisplay.textContent = ''; }
 });
+
+// Help dialog
+helpBtn.addEventListener('click', () => helpDialog.showModal());
+document.getElementById('help-close-btn').addEventListener('click', () => helpDialog.close());
+helpDialog.addEventListener('click', (e) => { if (e.target === helpDialog) helpDialog.close(); });
 
 // If the user clicks into the masked input, clear it so they can type
 keyInput.addEventListener('focus', () => {

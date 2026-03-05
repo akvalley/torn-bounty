@@ -33,8 +33,75 @@
         <option value="600">Auto: 10m</option>
       </select>
       <button id="refresh-btn" disabled>Refresh</button>
+      <button id="help-btn" class="secondary" title="Help / How to use">?</button>
     </div>
   </header>
+
+  <dialog id="help-dialog" aria-labelledby="help-title">
+    <div class="help-header">
+      <h2 id="help-title">How to Use Torn Bounty Board</h2>
+      <button id="help-close-btn" class="secondary" aria-label="Close help">✕</button>
+    </div>
+    <div class="help-body">
+
+      <section class="help-section">
+        <h3>API Key</h3>
+        <ul>
+          <li>Paste your Torn API key into the field at the top and click <strong>Save Key</strong>.</li>
+          <li>Your key is stored <strong>in your browser only</strong> — it is never sent to this site's servers. All API calls go directly from your browser to <code>api.torn.com</code>.</li>
+          <li>Use <strong>Clear Key</strong> to remove the saved key from this device.</li>
+          <li>Generate or find your API key at Torn → Settings → API Key. A <em>Public</em> access level is sufficient.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h3>Auto-Refresh</h3>
+        <ul>
+          <li>Use the <strong>Auto</strong> drop-down (Off / 2m / 5m / 10m) to automatically reload bounties at a set interval.</li>
+          <li>A countdown timer (e.g. <code>↻ 1:45</code>) appears next to the selector while a refresh is scheduled.</li>
+          <li>Clicking <strong>Refresh</strong> at any time resets the countdown.</li>
+          <li>Your chosen interval is remembered between visits.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h3>Filters</h3>
+        <ul>
+          <li><strong>Name search</strong> — filter by partial player name (case-insensitive).</li>
+          <li><strong>Anonymous</strong> — show all bounties, only those listed anonymously, or only named listings.</li>
+          <li><strong>Has reason</strong> — show only bounties with (or without) a stated reason.</li>
+          <li><strong>Min / Max level</strong> — restrict results to a player-level range.</li>
+          <li><strong>Min quantity</strong> — show only bounties with multiple listings (useful for high-value targets).</li>
+          <li><strong>Min reward / Min total value</strong> — hide low-paying bounties.</li>
+          <li><strong>Sort by</strong> — order by reward, total value, level, or quantity in either direction.</li>
+          <li>All filter settings are saved automatically and restored on your next visit. Use <strong>Reset</strong> to clear them.</li>
+          <li>On mobile the filter panel is collapsed by default; tap <strong>Filters ▾</strong> to expand. The badge shows how many filters are active.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h3>My Level &amp; Fair Fight</h3>
+        <ul>
+          <li>Enter your own Torn level in the <strong>My level</strong> field to enable fair-fight highlighting.</li>
+          <li>Any bounty target within <strong>±10 levels</strong> of your level is highlighted with a <span class="help-swatch blue"></span> blue border — a rough indicator of a fair-fight range.</li>
+          <li>Note: Torn's true fair-fight calculation is based on battle stats, not level. This highlight is an approximation only.</li>
+          <li>Your level is saved between visits.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h3>Card Highlights</h3>
+        <ul>
+          <li><span class="help-swatch red"></span> <strong>Red border</strong> — bounty expires in under 60 minutes. The expiry time also turns red.</li>
+          <li><span class="help-swatch blue"></span> <strong>Blue border</strong> — target is within your fair-fight range (requires <em>My level</em> to be set).</li>
+          <li>The <strong>Attack</strong> button on each card opens the Torn attack page for that player in a new tab.</li>
+          <li>Clicking a player's name opens their Torn profile in a new tab.</li>
+          <li>The <strong>×N</strong> badge shows how many open bounty listings exist for that player. The total payout across all listings is shown below the per-listing reward.</li>
+        </ul>
+      </section>
+
+    </div>
+  </dialog>
 
   <main>
     <button id="filter-toggle" class="secondary">Filters ▾</button>
