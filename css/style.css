@@ -76,6 +76,15 @@ header h1 {
 #status-msg.error { color: var(--danger); }
 #status-msg.ok    { color: #6ec97a; }
 
+#key-privacy-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+#key-privacy-note strong { color: #9aa0b8; font-weight: 600; }
+#key-privacy-note code   { font-family: monospace; color: #9aa0b8; }
+
 
 /* ── Buttons ────────────────────────────────────────────── */
 button {
