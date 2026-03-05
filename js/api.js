@@ -76,6 +76,44 @@ function normaliseBounties(raw) {
 }
 
 
+/**
+ * Fetch the live status of a single Torn user (basic selection).
+ * @param {string} apiKey
+ * @param {number} userId
+ * @returns {Promise<{state:string, description:string, until:number}>}
+ */
+async function fetchUserStatus(apiKey, userId) {
+  const url = `${BASE_URL}/v2/user/${userId}?selections=basic&key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const data = await response.json();
+  if (data.error) throw new TornApiError(data.error.code, data.error.error);
+  const s = data?.profile?.status ?? {};
+  return {
+    state:       s.state       ?? 'Unknown',
+    description: s.description ?? '',
+    until:       s.until       ?? 0,
+  };
+}
+
+/**
+ * Fetch statuses for multiple users in parallel.
+ * Uses Promise.allSettled so individual failures don't abort the batch.
+ * @param {string}   apiKey
+ * @param {number[]} ids
+ * @returns {Promise<Object>} Map of { [id]: {state, description, until} }
+ */
+export async function fetchStatusBatch(apiKey, ids) {
+  const results = await Promise.allSettled(
+    ids.map(id => fetchUserStatus(apiKey, id).then(status => ({ id, status })))
+  );
+  return results.reduce((map, r) => {
+    if (r.status === 'fulfilled') map[r.value.id] = r.value.status;
+    return map;
+  }, {});
+}
+
+
 export class TornApiError extends Error {
   constructor(code, message) {
     super(message);
