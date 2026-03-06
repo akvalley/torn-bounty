@@ -39,6 +39,17 @@ header h1 {
   letter-spacing: 0.05em;
 }
 
+#site-author {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: -6px;   /* pull tight under the h1 */
+}
+#site-author a {
+  color: var(--accent);
+  text-decoration: none;
+}
+#site-author a:hover { text-decoration: underline; }
+
 #api-key-section {
   display: flex;
   gap: 8px;
