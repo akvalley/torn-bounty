@@ -83,16 +83,23 @@ function normaliseBounties(raw) {
  * @returns {Promise<{state:string, description:string, until:number}>}
  */
 async function fetchUserStatus(apiKey, userId) {
-  const url = `${BASE_URL}/v2/user/${userId}?selections=basic&key=${encodeURIComponent(apiKey)}`;
+  const url = `${BASE_URL}/v2/user/${userId}?selections=profile&key=${encodeURIComponent(apiKey)}`;
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
   if (data.error) throw new TornApiError(data.error.code, data.error.error);
-  const s = data?.profile?.status ?? {};
+  const p = data?.profile ?? {};
+  const s = p.status ?? {};
+  const l = p.life   ?? {};
   return {
-    state:       s.state       ?? 'Unknown',
-    description: s.description ?? '',
-    until:       s.until       ?? 0,
+    state:       s.state                  ?? 'Unknown',
+    description: s.description            ?? '',
+    until:       s.until                  ?? 0,
+    rank:        p.rank                   ?? '',
+    title:       p.title                  ?? '',
+    lastAction:  p.last_action?.relative  ?? '',
+    life:        { current: l.current ?? 0, maximum: l.maximum ?? 0 },
+    revivable:   p.revivable              ?? false,
   };
 }
 

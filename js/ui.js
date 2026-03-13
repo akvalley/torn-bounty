@@ -92,6 +92,7 @@ function cardHtml(b, myLevel = 0, status = null) {
         ${expiresIn ? `<span${expiryClass}>${expiresIn}</span>` : ''}
         ${status ? statusBadgeHtml(status) : ''}
       </div>
+      ${status ? profileRowHtml(status) : ''}
       ${b.reason ? `<div class="card-reason">${escHtml(b.reason)}</div>` : ''}
       <a href="${huntUrl}" target="_blank" rel="noopener">
         <button class="hunt-btn">Hunt</button>
@@ -112,6 +113,34 @@ function statusBadgeHtml(s) {
   };
   const c = cfg[s.state] ?? { icon: '?', cls: 'unknown', label: s.state };
   return `<span class="status-badge status-${c.cls}" title="${escHtml(s.description)}">${c.icon} ${c.label}</span>`;
+}
+
+function profileRowHtml(s) {
+  const parts = [];
+
+  if (s.rank) {
+    const label = s.title
+      ? `${escHtml(s.rank)} · <em>${escHtml(s.title)}</em>`
+      : escHtml(s.rank);
+    parts.push(`<span class="target-rank">⚔ ${label}</span>`);
+  }
+
+  if (s.lastAction) {
+    parts.push(`<span class="target-last-action">⏱ ${escHtml(s.lastAction)}</span>`);
+  }
+
+  if (s.life?.maximum > 0) {
+    const pct = Math.round((s.life.current / s.life.maximum) * 100);
+    const cls = pct > 66 ? 'life-high' : pct > 33 ? 'life-mid' : 'life-low';
+    parts.push(`<span class="target-life ${cls}">♥ ${pct}%</span>`);
+  }
+
+  if (s.revivable && s.state === 'Hospital') {
+    parts.push(`<span class="revivable-badge">⚕ Revivable</span>`);
+  }
+
+  if (!parts.length) return '';
+  return `<div class="card-profile-row">${parts.join('')}</div>`;
 }
 
 function escHtml(str) {

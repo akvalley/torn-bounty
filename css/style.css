@@ -205,6 +205,15 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
   padding: 4px 10px;
   font-size: 12px;
 }
+#check-status-btn:not(:disabled) {
+  background: rgba(46, 106, 63, 0.35);
+  border-color: #3a8a52;
+  color: #6ec97a;
+}
+#check-status-btn:not(:disabled):hover {
+  background: rgba(46, 106, 63, 0.55);
+  border-color: #6ec97a;
+}
 
 #status-checked-time {
   font-size: 11px;
@@ -226,6 +235,25 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
 .status-jail      { color: #e89838; }
 .status-federal   { color: #c04040; }
 .status-unknown   { color: var(--muted); }
+
+/* ── Profile row (rank / last action / life) ────────────── */
+.card-profile-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11px;
+  padding-top: 6px;
+  margin-top: 2px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+.target-rank        { color: var(--muted); }
+.target-rank em     { font-style: normal; color: var(--accent); }
+.target-last-action { color: var(--muted); }
+.life-high          { color: #6ec97a; }
+.life-mid           { color: var(--accent); }
+.life-low           { color: var(--danger); }
+.revivable-badge    { color: #4a9eff; font-weight: 600; }
 
 /* ── Bounty list ────────────────────────────────────────── */
 #bounty-list {

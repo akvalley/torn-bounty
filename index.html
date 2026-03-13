@@ -94,11 +94,14 @@
       <section class="help-section">
         <h3>Player Status</h3>
         <ul>
-          <li>Once you have filtered to <strong>100 or fewer</strong> visible bounties, the <strong>Check Status</strong> button appears active below the filter bar.</li>
-          <li>Clicking it fetches the live status of every visible target directly from the Torn API and displays a badge on each card.</li>
-          <li>Status badges: <strong>● Okay</strong> · <strong>✚ Hosp</strong> (with time remaining) · <strong>✈ Traveling</strong> · <strong>⚑ Jail</strong> · <strong>⊘ Federal</strong></li>
+          <li>Once you have filtered to <strong>100 or fewer</strong> visible bounties, the <strong>Check Status</strong> button turns green and becomes active.</li>
+          <li>Clicking it fetches a live profile for every visible target and adds an info row to each card showing:</li>
+          <li><strong>Status badge</strong> — <strong>● Okay</strong> · <strong>✚ Hosp</strong> (with time remaining) · <strong>✈ Traveling</strong> · <strong>⚑ Jail</strong> · <strong>⊘ Federal</strong>. Hover for the full description.</li>
+          <li><strong>⚔ Rank · Title</strong> — battle rank (e.g. Reasonable) and honour title (e.g. Slayer), a better indicator of combat strength than level alone.</li>
+          <li><strong>⏱ Last active</strong> — how recently the target was seen online (e.g. "6 minutes ago").</li>
+          <li><strong>♥ Life %</strong> — current life as a percentage of maximum. Green above 66 %, amber below, red below 33 %.</li>
+          <li><strong>⚕ Revivable</strong> — shown only when the target is hospitalised and can be revived.</li>
           <li>Status is a snapshot — use <strong>↻ Re-check</strong> to refresh it. Bounty data refreshes clear status automatically.</li>
-          <li>Hovering a badge shows the full status description from Torn.</li>
         </ul>
       </section>
 
