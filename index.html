@@ -39,6 +39,20 @@
     </div>
   </header>
 
+  <dialog id="ff-consent-dialog" aria-labelledby="ff-consent-title">
+    <div class="help-header">
+      <h2 id="ff-consent-title">Fair Fight Data — FFScouter</h2>
+    </div>
+    <div class="help-body">
+      <p>Fair fight values are provided by <a href="https://ffscouter.com" target="_blank" rel="noopener">FFScouter</a>. Please review their data policy before continuing.</p>
+      <p>Clicking <strong>Register &amp; Enable</strong> will register your Torn API key with FFScouter so they can return fair fight data for your targets.</p>
+      <div class="ff-consent-actions">
+        <button id="ff-consent-agree-btn">Register &amp; Enable</button>
+        <button id="ff-consent-cancel-btn" class="secondary">Cancel</button>
+      </div>
+    </div>
+  </dialog>
+
   <dialog id="help-dialog" aria-labelledby="help-title">
     <div class="help-header">
       <h2 id="help-title">How to Use Torn Bounty Hunter</h2>
@@ -102,6 +116,17 @@
           <li><strong>♥ Life %</strong> — current life as a percentage of maximum. Green above 66 %, amber below, red below 33 %.</li>
           <li><strong>⚕ Revivable</strong> — shown only when the target is hospitalised and can be revived.</li>
           <li>Status is a snapshot — use <strong>↻ Re-check</strong> to refresh it. Bounty data refreshes clear status automatically.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h3>Fair Fight (FFScouter)</h3>
+        <ul>
+          <li>The <strong>Check FF</strong> button fetches fair fight values and battle stat estimates from <a href="https://ffscouter.com" target="_blank" rel="noopener">FFScouter</a> for all visible targets.</li>
+          <li>The first time you use it you will be asked to register your Torn API key with FFScouter — a one-time step. Review their data policy at ffscouter.com before agreeing.</li>
+          <li><strong>FF ×</strong> — the fair fight multiplier applied to your attack reward. Above 1× means a bonus; below 1× means a penalty.</li>
+          <li><strong>⚡ stat estimate</strong> — the target's estimated total battle stats (e.g. 2.99b), a more accurate measure of combat strength than level alone.</li>
+          <li>Like status, FF data is a snapshot — use <strong>↻ Re-check FF</strong> to refresh it. Bounty data refreshes clear it automatically.</li>
         </ul>
       </section>
 
@@ -188,6 +213,8 @@
       <div class="status-check-row">
         <button id="check-status-btn" class="secondary" disabled>Check Status</button>
         <span id="status-checked-time"></span>
+        <button id="check-ff-btn" class="secondary" disabled>Check FF</button>
+        <span id="ff-checked-time"></span>
       </div>
     </div>
 

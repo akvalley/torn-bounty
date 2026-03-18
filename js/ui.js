@@ -37,7 +37,7 @@ export function showPlaceholder(msg) {
  * @param {number} myLevel   — player's own level (0 = not set); enables fair-fight highlight
  * @param {Object} statusMap — map of { [targetId]: {state, description, until} }
  */
-export function renderBounties(bounties, total, myLevel = 0, statusMap = {}) {
+export function renderBounties(bounties, total, myLevel = 0, statusMap = {}, ffMap = {}) {
   if (bounties.length === 0) {
     list.innerHTML = '<p class="placeholder">No bounties match the current filters.</p>';
     countEl.textContent = `0 of ${total} bounties`;
@@ -46,12 +46,12 @@ export function renderBounties(bounties, total, myLevel = 0, statusMap = {}) {
 
   countEl.textContent = `${bounties.length} of ${total} ${total === 1 ? 'bounty' : 'bounties'}`;
 
-  list.innerHTML = bounties.map(b => cardHtml(b, myLevel, statusMap[b.id] ?? null)).join('');
+  list.innerHTML = bounties.map(b => cardHtml(b, myLevel, statusMap[b.id] ?? null, ffMap[b.id] ?? null)).join('');
 }
 
 // ── Card template ────────────────────────────────────────
 
-function cardHtml(b, myLevel = 0, status = null) {
+function cardHtml(b, myLevel = 0, status = null, ff = null) {
   const profileUrl = `https://www.torn.com/profiles.php?XID=${b.id}`;
   const huntUrl    = `https://www.torn.com/bounties.php?userID=${b.id}`;
   const listedBy   = b.listerName ? `Listed by ${escHtml(b.listerName)}` : 'Anonymous';
@@ -92,7 +92,7 @@ function cardHtml(b, myLevel = 0, status = null) {
         ${expiresIn ? `<span${expiryClass}>${expiresIn}</span>` : ''}
         ${status ? statusBadgeHtml(status) : ''}
       </div>
-      ${status ? profileRowHtml(status) : ''}
+      ${(status || ff) ? profileRowHtml(status, ff) : ''}
       ${b.reason ? `<div class="card-reason">${escHtml(b.reason)}</div>` : ''}
       <a href="${huntUrl}" target="_blank" rel="noopener">
         <button class="hunt-btn">Hunt</button>
@@ -115,28 +115,41 @@ function statusBadgeHtml(s) {
   return `<span class="status-badge status-${c.cls}" title="${escHtml(s.description)}">${c.icon} ${c.label}</span>`;
 }
 
-function profileRowHtml(s) {
+function profileRowHtml(status, ff) {
   const parts = [];
 
-  if (s.rank) {
-    const label = s.title
-      ? `${escHtml(s.rank)} · <em>${escHtml(s.title)}</em>`
-      : escHtml(s.rank);
+  if (status?.rank) {
+    const label = status.title
+      ? `${escHtml(status.rank)} · <em>${escHtml(status.title)}</em>`
+      : escHtml(status.rank);
     parts.push(`<span class="target-rank">⚔ ${label}</span>`);
   }
 
-  if (s.lastAction) {
-    parts.push(`<span class="target-last-action">⏱ ${escHtml(s.lastAction)}</span>`);
+  if (status?.lastAction) {
+    parts.push(`<span class="target-last-action">⏱ ${escHtml(status.lastAction)}</span>`);
   }
 
-  if (s.life?.maximum > 0) {
-    const pct = Math.round((s.life.current / s.life.maximum) * 100);
+  if (status?.life?.maximum > 0) {
+    const pct = Math.round((status.life.current / status.life.maximum) * 100);
     const cls = pct > 66 ? 'life-high' : pct > 33 ? 'life-mid' : 'life-low';
     parts.push(`<span class="target-life ${cls}">♥ ${pct}%</span>`);
   }
 
-  if (s.revivable && s.state === 'Hospital') {
+  if (status?.revivable && status?.state === 'Hospital') {
     parts.push(`<span class="revivable-badge">⚕ Revivable</span>`);
+  }
+
+  if (ff !== null) {
+    if (ff.fairFight != null) {
+      const val = ff.fairFight.toFixed(2);
+      const cls = ff.fairFight >= 2 ? 'ff-high' : ff.fairFight >= 1 ? 'ff-mid' : 'ff-low';
+      parts.push(`<span class="ff-badge ${cls}">FF ${val}×</span>`);
+    } else {
+      parts.push(`<span class="ff-badge ff-unknown">FF ?</span>`);
+    }
+    if (ff.bsEstimate) {
+      parts.push(`<span class="ff-bs">⚡ ${escHtml(ff.bsEstimate)}</span>`);
+    }
   }
 
   if (!parts.length) return '';

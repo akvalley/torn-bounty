@@ -254,6 +254,25 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
 .life-mid           { color: var(--accent); }
 .life-low           { color: var(--danger); }
 .revivable-badge    { color: #4a9eff; font-weight: 600; }
+.ff-badge           { font-size: 11px; font-weight: 700; white-space: nowrap; }
+.ff-high            { color: var(--accent); }
+.ff-mid             { color: #6ec97a; }
+.ff-low             { color: var(--muted); }
+.ff-unknown         { color: var(--muted); }
+.ff-bs              { font-size: 11px; color: var(--muted); }
+.ff-consent-actions { display: flex; gap: 10px; margin-top: 16px; }
+
+#ff-checked-time { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+#check-ff-btn:not(:disabled) {
+  background: rgba(46, 106, 63, 0.35);
+  border-color: #3a8a52;
+  color: #6ec97a;
+}
+#check-ff-btn:not(:disabled):hover {
+  background: rgba(46, 106, 63, 0.55);
+  border-color: #6ec97a;
+}
 
 /* ── Bounty list ────────────────────────────────────────── */
 #bounty-list {

@@ -121,6 +121,56 @@ export async function fetchStatusBatch(apiKey, ids) {
 }
 
 
+// ── FFScouter API ──────────────────────────────────────────
+
+const FF_BASE          = 'https://ffscouter.com';
+const FF_SIGNUP_SOURCE = 'tornbountyhunter';
+
+export async function ffscouterRegister(apiKey) {
+  const res = await fetch(`${FF_BASE}/api/v1/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      key: apiKey,
+      agree_to_data_policy: true,
+      signup_source: FF_SIGNUP_SOURCE,
+    }),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  if (data.error) throw new Error(`FFScouter: ${data.error?.message ?? data.error}`);
+  return data;
+}
+
+export async function ffscouterCheckKey(apiKey) {
+  const res = await fetch(`${FF_BASE}/api/v1/check-key?key=${encodeURIComponent(apiKey)}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return await res.json();
+}
+
+/**
+ * Fetch fair fight values and stat estimates for a batch of player IDs.
+ * @param {string}   apiKey
+ * @param {number[]} ids
+ * @returns {Promise<Object>} Map of { [playerId]: {fairFight, bsEstimate, lastUpdated} }
+ */
+export async function fetchFairFightBatch(apiKey, ids) {
+  const res = await fetch(
+    `${FF_BASE}/api/v1/get-stats?key=${encodeURIComponent(apiKey)}&targets=${ids.join(',')}`
+  );
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  return data.reduce((map, p) => {
+    map[p.player_id] = {
+      fairFight:   p.fair_fight,
+      bsEstimate:  p.bs_estimate_human,
+      lastUpdated: p.last_updated,
+    };
+    return map;
+  }, {});
+}
+
+
 export class TornApiError extends Error {
   constructor(code, message) {
     super(message);

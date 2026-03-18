@@ -51,3 +51,19 @@ export function saveAutoRefresh(secs) {
 export function loadAutoRefresh() {
   return Number(localStorage.getItem(AUTO_REFRESH_KEY)) || 0;
 }
+
+// ── FFScouter registration ─────────────────────────────────
+
+const FFSCOUTER_KEY = 'ffscouter_registered';
+
+export function saveFfscouterRegistered() {
+  localStorage.setItem(FFSCOUTER_KEY, '1');
+}
+
+export function loadFfscouterRegistered() {
+  return localStorage.getItem(FFSCOUTER_KEY) === '1';
+}
+
+export function clearFfscouterRegistered() {
+  localStorage.removeItem(FFSCOUTER_KEY);
+}
