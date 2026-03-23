@@ -299,6 +299,7 @@ function applyFiltersAndRender() {
   renderBounties(filtered, allBounties.length, myLevel, statusMap, ffMap);
   updateCheckStatusBtn(filtered.length);
   updateCheckFfBtn(filtered.length);
+  updateLocationOptions(filtered.length);
 }
 
 function sortBounties(arr, mode) {
@@ -363,9 +364,10 @@ function extractLocation(status) {
   return 'Traveling'; // fallback for unrecognised description
 }
 
-function updateLocationOptions() {
+function updateLocationOptions(visibleCount = currentFiltered.length) {
   const current  = filterLocation.value;
   const hasData  = Object.keys(statusMap).length > 0;
+  const canUse   = hasData && visibleCount <= STATUS_CHECK_LIMIT;
 
   // Collect unique locations from current status data
   const locationSet = new Set();
@@ -385,7 +387,7 @@ function updateLocationOptions() {
     filterLocation.value = current;
   }
 
-  filterLocation.disabled = !hasData;
+  filterLocation.disabled = !canUse;
 }
 
 function updateCheckStatusBtn(visibleCount) {
