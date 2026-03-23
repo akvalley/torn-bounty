@@ -25,6 +25,7 @@ const sortSelect      = document.getElementById('sort-select');
 const filterToggleBtn = document.getElementById('filter-toggle');
 const filtersEl       = document.getElementById('filters');
 
+const filterLocation    = document.getElementById('filter-location');
 const resetFiltersBtn   = document.getElementById('reset-filters-btn');
 const myLevelInput      = document.getElementById('my-level');
 const autoRefreshSelect = document.getElementById('auto-refresh-select');
@@ -115,7 +116,7 @@ refreshBtn.addEventListener('click', loadBounties);
   filterName, filterAnonymous, filterHasReason,
   filterLevelMin, filterLevelMax, filterQtyMin,
   filterBountyMin, filterTotalMin, sortSelect,
-  myLevelInput,
+  myLevelInput, filterLocation,
 ].forEach(el => el.addEventListener('input', applyFiltersAndRender));
 
 // Toggle filter panel on mobile
@@ -135,6 +136,7 @@ resetFiltersBtn.addEventListener('click', () => {
   filterBountyMin.value = '';
   filterTotalMin.value  = '';
   sortSelect.value      = 'reward-desc';
+  filterLocation.value  = 'all';
   saveFilters({});
   applyFiltersAndRender();
 });
@@ -165,6 +167,7 @@ checkStatusBtn.addEventListener('click', async () => {
   try {
     const batch = await fetchStatusBatch(key, ids);
     Object.assign(statusMap, batch);
+    updateLocationOptions();
     applyFiltersAndRender();
     statusCheckedTime.textContent = `as of ${new Date().toLocaleTimeString()}`;
     checkStatusBtn.textContent = '↻ Re-check';
@@ -228,6 +231,7 @@ async function loadBounties() {
   ffMap = {};
   ffCheckedTime.textContent = '';
   checkFfBtn.textContent = 'Check FF';
+  updateLocationOptions();
 
   try {
     allBounties = await fetchAllBounties(key, (count) => {
@@ -259,12 +263,15 @@ function applyFiltersAndRender() {
   const totalMin   = Number(filterTotalMin.value)  || 0;
   const myLevel    = Number(myLevelInput.value)    || 0;
 
+  const locFilter = filterLocation.value;
+
   // Persist current filter state
   saveFilters({
     name: filterName.value, anonymous, hasReason,
     levelMin: filterLevelMin.value, levelMax: filterLevelMax.value,
     qtyMin:   filterQtyMin.value,   bountyMin: filterBountyMin.value,
     totalMin: filterTotalMin.value, sort: sortSelect.value,
+    location: locFilter,
   });
   if (myLevel) saveMyLevel(myLevel);
 
@@ -281,6 +288,9 @@ function applyFiltersAndRender() {
     if (b.quantity   < qtyMin)    return false;
     if (b.reward     < bountyMin) return false;
     if (b.totalValue < totalMin)  return false;
+    if (locFilter !== 'all' && statusMap[b.id]) {
+      if (extractLocation(statusMap[b.id]) !== locFilter) return false;
+    }
     return true;
   });
 
@@ -319,6 +329,8 @@ function applyFilterValues(f) {
   if (f.bountyMin != null) filterBountyMin.value = f.bountyMin;
   if (f.totalMin  != null) filterTotalMin.value  = f.totalMin;
   if (f.sort      != null) sortSelect.value      = f.sort;
+  // location is dynamic — only restore if the option exists
+  if (f.location  != null) filterLocation.value  = f.location;
 }
 
 function updateFilterToggleBadge() {
@@ -332,6 +344,7 @@ function updateFilterToggleBadge() {
     filterBountyMin.value !== '' && filterBountyMin.value !== '0',
     filterTotalMin.value  !== '' && filterTotalMin.value  !== '0',
     sortSelect.value       !== 'reward-desc',
+    filterLocation.value   !== 'all',
   ].filter(Boolean).length;
 
   const isOpen = filtersEl.classList.contains('open');
@@ -339,6 +352,40 @@ function updateFilterToggleBadge() {
   filterToggleBtn.textContent = active > 0
     ? `Filters (${active}) ${arrow}`
     : `Filters ${arrow}`;
+}
+
+function extractLocation(status) {
+  if (!status || status.state !== 'Traveling') return 'Torn City';
+  const desc = (status.description ?? '').trim();
+  if (desc.startsWith('Traveling to ')) return desc.slice(13).trim();
+  if (desc.startsWith('Returning to ')) return 'Torn City';
+  if (desc.startsWith('In '))           return desc.slice(3).trim();
+  return 'Traveling'; // fallback for unrecognised description
+}
+
+function updateLocationOptions() {
+  const current  = filterLocation.value;
+  const hasData  = Object.keys(statusMap).length > 0;
+
+  // Collect unique locations from current status data
+  const locationSet = new Set();
+  Object.values(statusMap).forEach(s => locationSet.add(extractLocation(s)));
+
+  // Rebuild option list
+  filterLocation.innerHTML = '';
+  filterLocation.add(new Option('All locations', 'all'));
+  if (locationSet.has('Torn City')) {
+    filterLocation.add(new Option('Torn City', 'Torn City'));
+    locationSet.delete('Torn City');
+  }
+  [...locationSet].sort().forEach(loc => filterLocation.add(new Option(loc, loc)));
+
+  // Restore prior selection if it still exists in the new list
+  if ([...filterLocation.options].some(o => o.value === current)) {
+    filterLocation.value = current;
+  }
+
+  filterLocation.disabled = !hasData;
 }
 
 function updateCheckStatusBtn(visibleCount) {

@@ -116,6 +116,7 @@
           <li><strong>♥ Life %</strong> — current life as a percentage of maximum. Green above 66 %, amber below, red below 33 %.</li>
           <li><strong>⚕ Revivable</strong> — shown only when the target is hospitalised and can be revived.</li>
           <li>Status is a snapshot — use <strong>↻ Re-check</strong> to refresh it. Bounty data refreshes clear status automatically.</li>
+          <li><strong>Location filter</strong> — after Check Status, the <em>Location</em> drop-down in the filter bar activates. Select a country to show only targets there, or <em>Torn City</em> for everyone currently at home.</li>
         </ul>
       </section>
 
@@ -204,6 +205,12 @@
         My level
         <input type="number" id="my-level" min="1" max="100" placeholder="—"
                title="Highlights bounties within ±10 levels (approx. fair fight range)" />
+      </label>
+      <label>
+        Location
+        <select id="filter-location" disabled title="Run Check Status to enable location filter">
+          <option value="all">All locations</option>
+        </select>
       </label>
       <button id="reset-filters-btn" class="secondary">Reset</button>
     </div>

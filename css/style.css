@@ -254,6 +254,7 @@ button.secondary:hover:not(:disabled) { color: var(--text); border-color: var(--
 .life-mid           { color: var(--accent); }
 .life-low           { color: var(--danger); }
 .revivable-badge    { color: #4a9eff; font-weight: 600; }
+#filter-location:disabled { opacity: 0.4; cursor: not-allowed; }
 .ff-badge           { font-size: 11px; font-weight: 700; white-space: nowrap; }
 .ff-high            { color: var(--accent); }
 .ff-mid             { color: #6ec97a; }
