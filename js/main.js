@@ -21,6 +21,7 @@ const filterLevelMax  = document.getElementById('filter-level-max');
 const filterQtyMin    = document.getElementById('filter-qty-min');
 const filterBountyMin = document.getElementById('filter-bounty-min');
 const filterTotalMin  = document.getElementById('filter-total-min');
+const filterStatus    = document.getElementById('filter-status');
 const sortSelect      = document.getElementById('sort-select');
 const filterToggleBtn = document.getElementById('filter-toggle');
 const filtersEl       = document.getElementById('filters');
@@ -105,6 +106,8 @@ clearKeyBtn.addEventListener('click', () => {
   ffCheckedTime.textContent = '';
   checkFfBtn.disabled = true;
   checkFfBtn.textContent = 'Check FF';
+  filterStatus.value    = 'all';
+  filterStatus.disabled = true;
   setStatus('API key cleared.', '');
   showPlaceholder('Enter your API key above to load bounties.');
 });
@@ -115,8 +118,8 @@ refreshBtn.addEventListener('click', loadBounties);
 [
   filterName, filterAnonymous, filterHasReason,
   filterLevelMin, filterLevelMax, filterQtyMin,
-  filterBountyMin, filterTotalMin, sortSelect,
-  myLevelInput, filterLocation,
+  filterBountyMin, filterTotalMin, filterStatus,
+  sortSelect, myLevelInput, filterLocation,
 ].forEach(el => el.addEventListener('input', applyFiltersAndRender));
 
 // Toggle filter panel on mobile
@@ -135,6 +138,7 @@ resetFiltersBtn.addEventListener('click', () => {
   filterQtyMin.value    = '';
   filterBountyMin.value = '';
   filterTotalMin.value  = '';
+  filterStatus.value    = 'all';
   sortSelect.value      = 'reward-desc';
   filterLocation.value  = 'all';
   saveFilters({});
@@ -231,6 +235,8 @@ async function loadBounties() {
   ffMap = {};
   ffCheckedTime.textContent = '';
   checkFfBtn.textContent = 'Check FF';
+  filterStatus.value    = 'all';
+  filterStatus.disabled = true;
   updateLocationOptions();
 
   try {
@@ -263,7 +269,8 @@ function applyFiltersAndRender() {
   const totalMin   = Number(filterTotalMin.value)  || 0;
   const myLevel    = Number(myLevelInput.value)    || 0;
 
-  const locFilter = filterLocation.value;
+  const locFilter    = filterLocation.value;
+  const statusFilter = filterStatus.value;
 
   // Persist current filter state
   saveFilters({
@@ -271,7 +278,7 @@ function applyFiltersAndRender() {
     levelMin: filterLevelMin.value, levelMax: filterLevelMax.value,
     qtyMin:   filterQtyMin.value,   bountyMin: filterBountyMin.value,
     totalMin: filterTotalMin.value, sort: sortSelect.value,
-    location: locFilter,
+    location: locFilter, statusFilter,
   });
   if (myLevel) saveMyLevel(myLevel);
 
@@ -288,6 +295,9 @@ function applyFiltersAndRender() {
     if (b.quantity   < qtyMin)    return false;
     if (b.reward     < bountyMin) return false;
     if (b.totalValue < totalMin)  return false;
+    if (statusFilter !== 'all' && statusMap[b.id]) {
+      if (statusMap[b.id].state !== statusFilter) return false;
+    }
     if (locFilter !== 'all' && statusMap[b.id]) {
       if (extractLocation(statusMap[b.id]) !== locFilter) return false;
     }
@@ -299,6 +309,7 @@ function applyFiltersAndRender() {
   renderBounties(filtered, allBounties.length, myLevel, statusMap, ffMap);
   updateCheckStatusBtn(filtered.length);
   updateCheckFfBtn(filtered.length);
+  updateStatusFilter(filtered.length);
   updateLocationOptions(filtered.length);
 }
 
@@ -329,7 +340,8 @@ function applyFilterValues(f) {
   if (f.qtyMin    != null) filterQtyMin.value    = f.qtyMin;
   if (f.bountyMin != null) filterBountyMin.value = f.bountyMin;
   if (f.totalMin  != null) filterTotalMin.value  = f.totalMin;
-  if (f.sort      != null) sortSelect.value      = f.sort;
+  if (f.sort         != null) sortSelect.value    = f.sort;
+  if (f.statusFilter != null) filterStatus.value = f.statusFilter;
   // location is dynamic — only restore if the option exists
   if (f.location  != null) filterLocation.value  = f.location;
 }
@@ -345,6 +357,7 @@ function updateFilterToggleBadge() {
     filterBountyMin.value !== '' && filterBountyMin.value !== '0',
     filterTotalMin.value  !== '' && filterTotalMin.value  !== '0',
     sortSelect.value       !== 'reward-desc',
+    filterStatus.value     !== 'all',
     filterLocation.value   !== 'all',
   ].filter(Boolean).length;
 
@@ -362,6 +375,11 @@ function extractLocation(status) {
   if (desc.startsWith('Returning to ')) return 'Torn City';
   if (desc.startsWith('In '))           return desc.slice(3).trim();
   return 'Traveling'; // fallback for unrecognised description
+}
+
+function updateStatusFilter(visibleCount = currentFiltered.length) {
+  const hasData = Object.keys(statusMap).length > 0;
+  filterStatus.disabled = !(hasData && visibleCount <= STATUS_CHECK_LIMIT);
 }
 
 function updateLocationOptions(visibleCount = currentFiltered.length) {

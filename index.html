@@ -116,7 +116,13 @@
           <li><strong>♥ Life %</strong> — current life as a percentage of maximum. Green above 66 %, amber below, red below 33 %.</li>
           <li><strong>⚕ Revivable</strong> — shown only when the target is hospitalised and can be revived.</li>
           <li>Status is a snapshot — use <strong>↻ Re-check</strong> to refresh it. Bounty data refreshes clear status automatically.</li>
-          <li><strong>Location filter</strong> — after Check Status, the <em>Location</em> drop-down in the filter bar activates. Select a country to show only targets there, or <em>Torn City</em> for everyone currently at home.</li>
+          <li>Once status data is loaded, two additional filters activate in the filter panel:
+            <ul>
+              <li><strong>Status filter</strong> — show only targets in a specific state: Okay, Hospital, Traveling, Jail, or Federal.</li>
+              <li><strong>Location filter</strong> — show only targets in Torn City or a specific travel destination.</li>
+            </ul>
+          </li>
+          <li>Both filters disable automatically if the visible count rises above 100.</li>
         </ul>
       </section>
 
@@ -205,6 +211,17 @@
         My level
         <input type="number" id="my-level" min="1" max="100" placeholder="—"
                title="Highlights bounties within ±10 levels (approx. fair fight range)" />
+      </label>
+      <label>
+        Status
+        <select id="filter-status" disabled title="Run Check Status to enable status filter">
+          <option value="all">All statuses</option>
+          <option value="Okay">Okay</option>
+          <option value="Hospital">Hospital</option>
+          <option value="Traveling">Traveling</option>
+          <option value="Jail">Jail</option>
+          <option value="Federal">Federal</option>
+        </select>
       </label>
       <label>
         Location
