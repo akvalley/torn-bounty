@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:78cdd6ae2f4d4685bc740425ccd323c6ddd49f2f3d3baba423cf3325368e0068",
+  "claims": [
+    {
+      "id": "claim_f7045cf9e80240caa4448f5451966890",
+      "statement": "Check FF is gated behind STATUS_CHECK_LIMIT=100; updateCheckFfBtn disables the button when visibleCount > 100 or no key exists.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L424-L435",
+          "version": "repo-lines-v1:sha256:35c1f8402c32be7ec8a576f2c45e1e8c6fa9325eb5e621105242fc156eb851fd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzOTQ5NWVhNmJhYzQ3N2QwMzZiZWU1YTFmMTI1NTkzMjk5ZWYyN2E1ZmY3YjRlMmQzYmUyZmNhOWU1NzQ2MTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY1ODIyMTBmNzBiMWNjZTlhYjhkM2MxNmQ0NjkzMmY1YzdhOTI2NWJhN2Y4YzcyMmY3NzdiNDQwMjk2OGFhYzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1c2798c8e4ad4284a1bfc6ab42144a58",
+      "statement": "On first use, the ff-consent-dialog is shown instead of making API calls; Register & Enable triggers runFfCheckWithRegistration.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L42-L54",
+          "version": "repo-lines-v1:sha256:139b61bffa58b65d837463d1c7d09bd1b4eba3673f2e64ab563893abb8796343:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZmM5Y2Y5NjZjNGIwMDg1NWFkZjM4ZDdhM2NmMDZkY2ZjOTE5OTFmZTg3YjBlYzQxNDE1MTdhOTQyOTAxOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMzE1MGYyODE2OWJiMzQxZDIxODI4OTc3YzExMWJlYmQxZDVlMWRiMmU5Zjc2MTFlNTJiZThjN2IxNmQxZGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzNDY4YzRiMzc4ZTk4ODlhYjA5MjQ0NGY1YTZhMTVkY2Y4OWEzMGM3ZjgxYTU2MjA3YmJmYjE1N2NiYTAzNzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNzllNmVlNDQ4NTQxOTQ5YjkzN2Y1MDNjYTkxODZhYTg5ODIzZTQ4OTQ3ZjFlMGIzY2RhZmFlNTdhMjA0YWIifQ"
+        },
+        {
+          "resource": "repo://js/main.js#L187-L196",
+          "version": "repo-lines-v1:sha256:46b604c113958113551b5e076d93bf91e0ae0b5b474d822269847e09c78dde67:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNzkzMTFkODhkYTZmMWM5NTk3NzM2MGI2OThjOTEwZTA1NzcyYjliZDNmMDJhYmQ0MTE5ZjhiOGFmMmMyZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1MTk1NmRiOGY1YjY1NjFjMjMyNzMwZGNkM2Q0ZmYyY2Q4MDY4MjJkYmQ3Y2FlYzlmZmY0YTdjMTM0NzE4MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMGU4NmJkYzhjZGY4M2Q0ZWJiYjcyZjE0NGRjODdmOTk0NzQ0ZDIwZjE5ZDlhZTkwZjk2ZDcwZDNiMTM5MmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlMDNkNzU2MjZjNzVlNWY1M2Q3NzJlOWRmY2I4N2U5MTc5OTkwNGUzNjM0MDU5MjYwZWE5NmFjOTQ4MTk0MDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8f55763f5ff649ebab8bd1ec44e08a82",
+      "statement": "runFfCheckWithRegistration falls back to ffscouterCheckKey when ffscouterRegister throws, then aborts if is_registered is false.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L437-L456",
+          "version": "repo-lines-v1:sha256:0413522b09af6391e0b6ef0fb1ba0e2cc0738912581e04dd327f06db43caf373:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0NjBmZGI0M2JjZmE1ZjkzMGMzYjI1NDk3NzEzNjUzY2IxMWZmY2RiOWU3NGE4MGZlMzJiZGY5Mzk2NDhmNzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZjODM1ZmQ4OGFhYjUxZWYyMWZlN2QwYzYyNDczOTYzMWMwNmYwMGIxNTc4MGI2MzlmNzcyOWVmNDY0OThiOTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3ea93c79637e4450bf3a6b41f0104e0a",
+      "statement": "runFfCheck collects IDs from currentFiltered, calls fetchFairFightBatch, merges the result into ffMap with Object.assign, then calls applyFiltersAndRender.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L458-L475",
+          "version": "repo-lines-v1:sha256:728c3ab526a293287785d82d605c5c82d5e5f8ae2625c705545793775e72a3c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiMGMxNzE5MTQ5ODE1NGRhYTRkZGE3ZGNhNTIxNDk5OTkyMDI3YzFmYjBiZTEwMmU5MjRkZDlhOWYyYzUzZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3M2ZlOTZhODQwMTUyODEzMmI2MzI3MTZiNWMwNWQ0MGUyY2I3YWI3ZjZjOTkyNTFjYzFhZTkwYmU1YmJkMzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_28c67da58e7f4cac9d086ec3d1a95e2c",
+      "statement": "FF badge colour thresholds: ff-high for fairFight >= 2, ff-mid for >= 1, ff-low for < 1, ff-unknown when null.",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L143-L149",
+          "version": "repo-lines-v1:sha256:018814c300cdb855a3b2d8be4fc1f69db604ceac356eb05afaff5c677265b3d4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGRkOWFiMGZlMWExOTBlMDFiMGQyOGJmYzhhZjkzNmQ0MjdlOTNmNTA3MTY1MDBiZTk2ZjZiMzE3M2U5YTFjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTBhZTRmZDhkMGJkMjAwNTE0NjYxMjA4N2U0ODAwNWQ2ODdiYTVmY2M0YTdmOGNhMTE2MGYyYjNhZjVlMjFkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjI0NzUyYjM2ZDQzNGU5MmQ4NjVlNTQ3NTg5YWIwNzhiNDQ1M2EwZGE3YTRiZWYyNWZmNGY2OTUzM2ZiYmFhNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2555efac84fb4564b86d31b63d5738db",
+      "statement": "ffMap is cleared to {} at the start of every loadBounties call.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L235-L236",
+          "version": "repo-lines-v1:sha256:248ca9ff0d2b2f1390586ae766d94343c55abb19e7963c7def88928692e1e9a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDQ1ZjRlOTFjMjliZTMwYzFlNWM5NDVjNGI2YjA3MDhkNDliODI3YzYxOTk5ODFkZTNjYzU3MDE4MGVjYTg2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU5ZWFlMGM4MWQzNWQzMDdkNWE1MDcyNTNmMzVlMDYxNjM0MTM4YjlmY2M0YTU2MTk0ZDgxMmI5NzQ2NGU4MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmM0NGI5Yzk2NWI2MDQwNDQ2MWE5M2YyMzAwZWJjYmI4YjNjNTYzNWJlMGYxZWVkY2M4OTg0NzRmZmI0YTI4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzdhNDNmYjJlOWE4MmQ1MjhmZDZjZmE1ZGY5ZTRiNWM0NWYyOTkwMjU1M2QyNzJhOWU1ZDM4NzI5YjEzNjY4NyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

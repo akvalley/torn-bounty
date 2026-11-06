@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f4e5513952f20234bed4fc57409f744cb311d4906a1dbeae27062b68763dfc93",
+  "claims": [
+    {
+      "id": "claim_06d68c2d2bc64538901dc212a3b49016",
+      "statement": "The app has no build step, no bundler, and no npm dependencies; index.html loads js/main.js as an ES module directly.",
+      "evidence": [
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:b83fcb051debb7dda98456afd69cebb2a56905ebe04330340921a7d3e6445a88"
+        },
+        {
+          "resource": "repo://index.html#L250-L250",
+          "version": "repo-lines-v1:sha256:f6eb2f533afd9231d99251e00b436429dc839fe934367a5e0b01bf55abb0af38:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZlYjJmNTMzYWZkOTIzMWQ5OTI1MWUwMGI0MzY0MjlkYzgzOWZlOTM0MzY3YTVlMGIwMWJmNTVhYmIwYWYzOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZlYjJmNTMzYWZkOTIzMWQ5OTI1MWUwMGI0MzY0MjlkYzgzOWZlOTM0MzY3YTVlMGIwMWJmNTVhYmIwYWYzOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWY5YjcyYzQwZmU5ZjVkYmI4NTcyNmNhYjdkYzMzZjhmNTQ1ZDg1ZjhjYjAwOGQzN2Y0MTM4NGE0NWRmNzBiNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDJlZDU0ZWRjNDJmYmJiYzM2OTg4YjJhMTg0YjY3ZTQ5NTY4YmU0ODA3ODMyNTM4YmE5YjdlZGRhNTM3NDRkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_012471965155427486dddb822d768aa3",
+      "statement": "api.js never touches the DOM or imports from storage.js or ui.js; ui.js never imports from api.js or storage.js; storage.js has no imports; main.js imports from all three.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L1-L5",
+          "version": "repo-lines-v1:sha256:51556eb24e29355e004ca4e79fd44229adb1a94c9b98067dca4f7672e9cf470f:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTc5YWY2NWRjMGYxZTAxYTBiMDI3YTliYWYzMjhhZGM2NWI1NzBmZTdiZDYxMGJlYTRjODU4NzA1NzEyZjk1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTIzMWI4MDJiYTEwNWMxMmQ3NjE3MTlmYzBhZjRlNDUyNWVmNjVkOGEwYTA4ZTNkYjI3NTY3NDU1MTdlNzVjNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDdhYWY3NjYxZWQ3YTIwYTQxNDk3YjEwMjUwZTY4ODJiOWI2NWMzYWJiNmZlMTQzNTQxYWE3NGIzOGFhMzVlNiJ9"
+        },
+        {
+          "resource": "repo://js/main.js#L1-L8",
+          "version": "repo-lines-v1:sha256:f350a055ca7f69e2b527c73f1981660b460f84c2b92f127fb6541e3821c56c4b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2YyMThlYTg4NmYyMWE4Y2RkYTFiOWQ0YjQ3MTMyNGJhMjVhZDE5ZjA0ZGI5ZjU4N2MyOGZmNWZlMjBiYzhmNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTlmNzViODBkODE4MGU1ZGU2NzQ1NGE1YjJmOTI0MzgxM2YzYmRiZDA3MTFjYTYxZjExZGVhYTJhOGRiZTI0MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjk2OTg2NGMwOGEzZWMxNDQyMzE1YTdmOTQ4ODk2M2NhNGYwMmZkNzI4N2EzYjcxZGYwNGYzMDEwZWQ4ODNhZSJ9"
+        },
+        {
+          "resource": "repo://js/storage.js#L1-L5",
+          "version": "repo-lines-v1:sha256:c862a3b2f42a492e2cd9c1195cb01e9c3ddf8a743277441f4d8d9a11dd8ba92e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWZiYjhiYjVjMDkxMjE4YzA2NTMwMTVmZjY2MTgzYTA5OTQyYTRkMTE3NzYzZWJiYWM3OGYyN2I0MTZhNTRiZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTlhZjk3OGRkNDZhMzZkNjZhN2UyYjA1MDFhMDJjZjhmM2RiZDVlYzU5MTI3MmJjMGE0NjNlMTk2ZGQ4MjZjYiJ9"
+        },
+        {
+          "resource": "repo://js/ui.js#L1-L5",
+          "version": "repo-lines-v1:sha256:a25f4825299fbd051f951be3ae99146c7dd231136096bb25286fd82052ba59b0:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmRhNDA5NGYzZjAzMjA1MGM3NGNkMzhlODkzYjU5ZjgyZmYyNDI3Njk0ZGJlNGFjYWQwYTkwYzZkYzBlMzM1ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDc4ZGNmMDI2OWJlYmUxN2FlMzNkYzEwYTY1ZjhiZWE4YmU3NWM0NzViYzkyNTQ5YzkyYzY4NDc0NGQ4ZGNlYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWExYjA3NjNjYjc5YTk2MmQ4OTNmNjc1ZDE4ZDExZDdkZmY4ZDI3MmEyMzgxZWFlM2ZmZjBkZThkMWFjOGE3MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f78df96d107a45a484fb48fc0f454a21",
+      "statement": "statusMap and ffMap are both cleared at the start of every loadBounties() call, so stale enrichment data never persists across bounty refreshes.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L231-L240",
+          "version": "repo-lines-v1:sha256:c9ee2eadf10abfd69719800c88c2b2cfb46714958635c5c9e6881fe4915cca8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3NGU3MTIwNWFjNzQxMDM3YzM0MzhhYzIwZGEwMDZjYjMxZTEzODdlNjAzNTMwZTZjZWQ5MWM4NDYwZGZkZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhNTVkNDliMWEyMjYzZjdkYjE3MmY0NjllZTdmMjQ2NTYyOWFiMjgwYTJlOGVhOWE4NjM2YWNjZDZkZjdmZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0ZDViYzJhYzdmNWJhNzRhYzY4M2M2YzMwZjI1YTU3NzkxZjI0ODc0YzljZjA3ZWI0ZDlkYWRiNDNlZGRhOGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwZTU5NjAyMTZmZjJlZDRlMDg3MmQwMGEyZWM0MmRjNDAyYzI0NzAwYzFlNzY2OGNlZWI2MTkyM2YwYmI2NjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_348a6d28aa9f41e39bc5a88d1072e9d7",
+      "statement": "STATUS_CHECK_LIMIT is 100; both Check Status and Check FF require visibleCount <= 100 to enable.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L411-L434",
+          "version": "repo-lines-v1:sha256:34c862252082b01170996d0f3067c218c63b5ccf62c0b397008305bbd3998120:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyZjJhMTU2NGJlYjBkYjU2MTQ1NWFhOTM1MmRlYmU2ZGM1MTk5MWVkMGQ2MTdjODFiOTllNzk1YzU5MWM3OWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyZmYyNjNjYTAwODY4NDI0NjU4YjAwOGExNmFiNjQ5M2M4ZjFiOWIxMzQ1NWNiNGM1MDViZjJkOTlmZTY0OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiNTM1NGJhYzQwOTY3OWFhMWIwNDhiM2YxZWJkZmM2ZWE5ODdmNzA3MWMzODliMmZiMTE3M2ZkOGZmNjNkYTkifQ"
+        },
+        {
+          "resource": "repo://js/main.js#L52-L52",
+          "version": "repo-lines-v1:sha256:65934aeff17fa673e91d1334795ac482879dfbd3e432df39b75904b244a30bb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU5MzRhZWZmMTdmYTY3M2U5MWQxMzM0Nzk1YWM0ODI4NzlkZmJkM2U0MzJkZjM5Yjc1OTA0YjI0NGEzMGJiMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU5MzRhZWZmMTdmYTY3M2U5MWQxMzM0Nzk1YWM0ODI4NzlkZmJkM2U0MzJkZjM5Yjc1OTA0YjI0NGEzMGJiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzVkMGE1NTczNzBjZDFkMzA5YmM3MWRlNDQ5NTlhODMzNWUyY2RhZTViZTBjMDA1MmE5Nzg0YjQwMTMzY2E4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzQ2MzU3Zjc2YzExZmIxOTZiNjliMWEwYzI5YjMyYTAwNWE0OWYwZTA4MTFkOGQ5MGU0NDA3MjMzOTU5MWRiMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c2f040d8705c487f9b94a309e28b4f64",
+      "statement": "Init IIFE restores filters, my-level, and auto-refresh interval from localStorage before triggering loadBounties if a key exists.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L55-L76",
+          "version": "repo-lines-v1:sha256:e53f4e54cac0ef7d2c2e2eda69b56147e07bd305608691122251177a9c73aa4f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjNmEzZmE5OTBjOWY0Y2U5NjM0MjIwNjVmYWNlOGFmYWM2ZDhmMTY1YzYzZTRkOGEwZTE2YzI1YTk4OGY1OWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5ZmFjNWEzMDM5YmJhZDI4N2FjODE1ZDUzM2NmM2FiZDRiNDIxNzkyMGNiZTJjOTNiYjM0YTZlMzAwMDMxNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmY2RhNjFmZDU2ZjcyYzkwMzdmMzRjODJlNTFmNzg3M2I3MWY5MTFjMjEzN2UzMDhmZDczZjc3ZGI4MGFjOTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5MTQwYmZlMTE5ZjhmNWJhZjdhNWEzYjc1NDdhYjM4YTkxN2IzZDMwMGY0NDg5YTYwYzliYzBhNGJkMGNiMjgifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

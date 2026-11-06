@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:9628d96fad3eda723f503a8e172e6ba5a0eaf813526f88c0f3b231b2d4d732f8",
+  "claims": [
+    {
+      "id": "claim_304b6af8b10b445fab7844459ec7a966",
+      "statement": "Cards get CSS class 'expiring-soon' when secsLeft < 3600 and 'fair-fight' when myLevel > 0 and abs(b.level - myLevel) <= 10.",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L60-L73",
+          "version": "repo-lines-v1:sha256:f7a9add311da145c405764e5717834ab44a457b9486923ab5ee6c60219fc124c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjMGM5NTM1YjI1OWVhMTMwNDk5Y2Q3MzQ3N2ZkMDYwMzliYjI2MDY5NGU0OTk2OWFiMzFjODI2NTE1NTBhMWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwZTZjOGUwYzllMzA0OWQwMWEyYTQ0N2FjMzJlNTA4YjkzMzhlMTJjZTIyNGI2OTVlNjU1MDcwMjRiNzZiMjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0OGJiMWMzMmMzOWM5MzQ3YWU0MGU0YTc4NGVhNDY2MzljZjQwMzJkOWIzYmM4ZmYwZmVjNDc4MTU5MWI0NWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5NzI5NDE3ODQ4ZTY4ZjcxNWU1ODI4MGQ1ZmFhNWI0MDljZjVhZDMyODdkMGE5ODUxNGE5Y2U4MmQ3NDM3ZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_34e94a8ac04a4c178963da7356bc5a73",
+      "statement": "All user/API-derived strings rendered into HTML pass through escHtml, which escapes &, <, >, and \".",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L159-L165",
+          "version": "repo-lines-v1:sha256:fc5b734067a8989c80f7c5836ee244a02cc1bb52d5eed7fad6845f4272d1ed6c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGNlZGMwOTU4OTNiOTE2YzY3YjJmM2NjMmE1MmU0NDllNzk2ZjdjODk3NjYwNmUzOGNmODBhOTc1YmQ3MmY4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGFjMzhhMTFjZWQ4M2I0OTQ5Zjc3NzE3MjZlOTNiZGQ3ZjZmYzUwYWJlNmI0NjAxMGU4OTM2ZjZjZTgzMDYxYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGUxYTY4NDgyZjk2NjhhNzI5NTU2MDFhNTY0Mjk2MjE1OWM3YzRmYTJjODIwNWZkOGQ5YzY5M2JmOGY4YzQwZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d022d70f3d574d25995700ffd2f674b4",
+      "statement": "profileRowHtml renders rank/title, lastAction, life%, revivable badge, FF badge, and stat estimate — only when status or ff data is non-null.",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L118-L157",
+          "version": "repo-lines-v1:sha256:41adb1ef43b6840d660d04f674140f3e446554cb326f53ada4dc5caf6c93a170:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyMjBkMTc3OWZkNWRhMTdkNjA5ZjYwMTcyYmEzYzQzNWFjNTRkMDY5MjNkZDkzNWRkNDU3NWE2MDFjNmRlYTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmZmJmZjQyYTJmNDk1YWQwNjlhOTM0Njk4MzkxNjEwZTJhM2FhYjljY2FlMmJlZTQ0ZmVjNzM3Mzg4NDMzYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwMGJkYmU4ZWM2ODNkOTI3NzI1M2MxMzFjMmY0ZDQ2NTM5OTM5MDIwNzA5OWYzYzQ5Njc5YTJlYmE3YjFlMzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8c24d11600264e098225c889d08bf793",
+      "statement": "Life % CSS classes: life-high above 66%, life-mid above 33%, life-low at or below 33%.",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L133-L135",
+          "version": "repo-lines-v1:sha256:94bdbe9a845739d4a09c767909b450282493ebd26edc824eed24c4478d36f09c:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWRhNjU4MjVjNjIxZjcwYmI2N2MzZWU0YmY0OWIyNDcxM2UyZjRjN2ZiZWE4MTc2ZWE3YTYyNDA0NmEyNzQ3YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjczMDgwN2ViZjkwODkwNzllYmE5OWY2NDkzODkzMmNlYzIxNTBlODNlZTcwMDQxYTdiOWI2MTE0NDZjODJhMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTUyNmNkNzdjOGQyZTI1ZmI4NDFhODgyZDliZDMwODkyZWFiNTViMzEwMDMwMTBkNzFjNDU2NjAyMTBhOTc2OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGYwNDEyZmUxMTQ4YzJiZGUzNjBjODk3YzZiNzgxM2FlMjYzZjM2MjJmZTM3YTllZTk1NDg0ZjQ2YTBlMTNkYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_edbda96d479542e9ae0445f2876f60a5",
+      "statement": "statusBadgeHtml maps the five known states (Okay, Hospital, Traveling, Jail, Federal) to icons and CSS classes; unknown states use '?' and 'unknown'.",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L105-L116",
+          "version": "repo-lines-v1:sha256:dfad3b00d76796ee56f79019b8b1630f7ce940ae68615265f367539e9c060625:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlNjc0N2FiMWI1ZDIyNTExNTcyNDNmMmYzZTMzMmUyYWRlMWFjODgxZjAyMWY1MTI0MGMyM2Q0ZmI0MDY2NTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlMDViYzc0Mjg0MWJkYmMwYTU2Y2QyOTZiYzVmNzIyMjU1MWFiNDU0ZDA3ZDQ2MzI2Mzg4YzE2ODFmOGI0YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiODJlMDhmOTVkYWEyODQyNTU4ODRmZmU2MjMzM2I1YWU3OGJkZTliZDFiZDk1YTE4MzIyZWYwNmZkNWZmZjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e6348b41f84446d9a07e9984189940b9",
+      "statement": "Hunt link targets bounties.php?userID=<id> and player name links to profiles.php?XID=<id>, both opening in a new tab.",
+      "evidence": [
+        {
+          "resource": "repo://js/ui.js#L55-L56",
+          "version": "repo-lines-v1:sha256:cb821b4ab982e8549545dad1a93f60efc89dcce31a72ef3f68fbccde364a45e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDllYmFhMmNhYTk4MjYzMTU4NTE5ZmNlNTlhNDM1NWRiYmVhNDljZjM1YjYwNzFlNWQ5ZTJmNjVmMzgyY2Q4ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmFmMGNjZDUwYmY1OTVkZDI1Y2Q1ZjBlZTVmMjg3Nzg2OTExZDY0NWI0ZTBmZTM3NjExYjQ5YjU5YzEzZTkzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2IxNzZhZjMxZWM5YmFkZDlmMDU3ZjJlZWIzZTc4ZWQwNWRjNzc3NTI0YjkxYzAyOTc1Yzg4MTg1ODI2MTljMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ4YmIxYzMyYzM5YzkzNDdhZTQwZTRhNzg0ZWE0NjYzOWNmNDAzMmQ5YjNiYzhmZjBmZWM0NzgxNTkxYjQ1ZSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

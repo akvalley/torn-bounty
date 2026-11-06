@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b2cdb463c0f9f5beac6f903aab308baca55d6babc6dd4939379b531f4cdd4ccc",
+  "claims": [
+    {
+      "id": "claim_6f94f2b237754e24b3b5133d2765d958",
+      "statement": "js/storage.js owns all five localStorage key names and all read/write logic; no other module accesses localStorage directly.",
+      "evidence": [
+        {
+          "resource": "repo://js/storage.js#L1-L69",
+          "version": "repo-lines-v1:sha256:2a1d477cfa7d7518f37f39344e1b6e06b69ab2727870e33489eb8780069ce0c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmYmI4YmI1YzA5MTIxOGMwNjUzMDE1ZmY2NjE4M2EwOTk0MmE0ZDExNzc2M2ViYmFjNzhmMjdiNDE2YTU0YmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ba5ba88eb1004eb7b2b11101c96b91f4",
+      "statement": "The API key is stored only in the user's browser and passed only to api.torn.com and ffscouter.com as a query parameter; never sent to any server controlled by this application.",
+      "evidence": [
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:b83fcb051debb7dda98456afd69cebb2a56905ebe04330340921a7d3e6445a88"
+        },
+        {
+          "resource": "repo://js/api.js#L11-L11",
+          "version": "repo-lines-v1:sha256:cfb62178f94f852154a8d10220449db71c4d11a86624e4c243940270551ab72f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2ZiNjIxNzhmOTRmODUyMTU0YThkMTAyMjA0NDlkYjcxYzRkMTFhODY2MjRlNGMyNDM5NDAyNzA1NTFhYjcyZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2ZiNjIxNzhmOTRmODUyMTU0YThkMTAyMjA0NDlkYjcxYzRkMTFhODY2MjRlNGMyNDM5NDAyNzA1NTFhYjcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjJkMzQ5MDY0NGQ4NWY3NjhhYmNkZjg5NWY0ODcyMmMxZjA4OGE5YTQ2ZTE5MWU0MGVkNzgzMTdiYzg4Y2MwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2ZlZjZlZWFkZmEwNjE3ZmFiMzJjY2UzZTFhZjcwZTdhOGY5OTkwZTBjMmJiZDUwN2RkNmIyZTE2ODJjOTRiNSJ9"
+        },
+        {
+          "resource": "repo://js/api.js#L129-L137",
+          "version": "repo-lines-v1:sha256:c892720d65985ce3a212120ee6b95e7b01014c3f0b21df32db6f1114930fcf91:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjg5YTc4ODY5OTlmMjM0NDcxMjVhYzc0OGU4YTAzOTRhYWQxNjdkZDAyODkxNmU4NjhkZWQ2OWRhZjA4NjViNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5MGViNmNjZGIwZmVmY2MzYzlhODgzYzg3OWM5ODY2YmUzMzkzMWNhYWFiZjM2NjJkN2FjNGM0MTNlYzhiMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGY2ZGI2ZWUxZjY4YjlkMzBlYjMxYzE5YTQxYzljMDFkNjc3YTZjNGQwY2NmZTkxNGJkMjI5MTA0YzUwYjkxZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODYyOGIyNjQ0MzUxZGUyYjA4YjYyMThmNzFiMWUwMmM5NzU4MmIxYjEyYmZhMjMwODQ2ZmYwYzY4ODcyZWZjZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_925eb41507ae4c8c8941c4f7e9cb205c",
+      "statement": "saveFilters silently swallows JSON serialisation exceptions via try/catch.",
+      "evidence": [
+        {
+          "resource": "repo://js/storage.js#L23-L25",
+          "version": "repo-lines-v1:sha256:fdf3a2fe50987dea34e335f12899c98a35ce7126b224bb3e86d9a26b738574a1:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDhkNjI2YjQxMjA2YWNlNmFhOTI2NDAzZGZkYmRkNGIwNzZlOGY4NzM2NzU4ZjU4MjgxZDdiYWEzNjVkMjc3MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTMyNTQ4NWVjNWUyYTQyOThlYmJjZWM5MDYyNWQ4ZDg0NGE5ODU1NWQxYTkxNzg3NGU1MTQ5ZGUxODQ2YjBiYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzEzMTJjZmIyN2E4N2Y2M2ZkZTAxY2ExNzFmMjMxNWM4MjI4ZGJhNDMzMTEwODUxZTZiNGQ3ZmJjNjU1NGY5NiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0514a79fa373437c9310e022e9335905",
+      "statement": "ffscouter_registered is set to '1' after successful FFScouter registration and cleared when clearApiKey is called.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L99-L99",
+          "version": "repo-lines-v1:sha256:11cafe681326f017fb2f0b48e69f7380162108f0eecc298e996298afb5e54a63:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFjYWZlNjgxMzI2ZjAxN2ZiMmYwYjQ4ZTY5ZjczODAxNjIxMDhmMGVlY2MyOThlOTk2Mjk4YWZiNWU1NGE2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFjYWZlNjgxMzI2ZjAxN2ZiMmYwYjQ4ZTY5ZjczODAxNjIxMDhmMGVlY2MyOThlOTk2Mjk4YWZiNWU1NGE2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjZhMGUxNTZhZTc5OTMyMTBhZTJmZjlkNzNkY2Y1OGQwY2I5ZGYxZDYxNmVjN2RhNmUxNTMzODQwMWNjNWQ1ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWY5NmU2MmI1Yzc0OThhMTBjODUwNzcwMjkwNWQxNzA2YjRkNzliYTk4OGJiYzMxOGY1NzQ5OTQxOWU5ZjY4YiJ9"
+        },
+        {
+          "resource": "repo://js/storage.js#L57-L68",
+          "version": "repo-lines-v1:sha256:c3ad28479c6617f3cdd19f9dc9fc49172829663fff5cda5da8d77c90d4d6df8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhZjI0YTM3ZGU2OTI2N2VkNGExYmY4YWJhYzBjOWNhN2I2OTVkNzRiN2M5ZTI3ZGIzNWExODdkN2NiMTk1YmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5YTNhNjFiM2Y1ZGQwNTQzNmI5MGVkZmZiMmE5YmRjYjY0MmQ1YzNjMDZmYjg3OWQxMjljYmViMzA4YjdhZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhZjI1YzhlYmU3ODY1NWI4YTRlNzA5ODIyZjc3Y2Y3NDcwNjlmY2Y3N2YwOGUyZTkxOGIwY2NmYjY5YWUzZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4b082aa293349fe9e828be227f49bd1",
+      "statement": "loadMyLevel returns Number(value) || 0, and loadAutoRefresh follows the same pattern.",
+      "evidence": [
+        {
+          "resource": "repo://js/storage.js#L40-L42",
+          "version": "repo-lines-v1:sha256:0461892aef88f08541ce8013e5be4dd7a00844013320919491e1f562ca5aca0a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2M1ZmUzYmNmMDUxMDExMjhjNjE3MWIwNDRmNmE2OWIyZWFlYmZjOGI5YzkzMDE0MDdkYzVkOWU3ZjcxNTUxOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTJmZmYxMmU5Y2ExODFjNGZkMGI3YTZhMmU2YWUyNTJkNzJkZTg4Yzk3YTIxN2I3MjFhMWRjNmM5OGU4YmZlZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2U0MTQ2YTY5NTFiODc2MjEwNjdlYTBhMDU1ZDYyNTQ0MmQ3NjBlOWE4OGNmZDBkNTUxNzI1MTgxYjliZjE0OCJ9"
+        },
+        {
+          "resource": "repo://js/storage.js#L51-L53",
+          "version": "repo-lines-v1:sha256:1634ec187c18352c38abd409ccc157cd8a8b015af22c4ad7963361bf007de110:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDM3NGRhYTQ3MTI0MGRlNGIxZWRlM2IzMjg2NGRmYzYxOTc3N2IzZDkzZTRlMTM4MDczNzJmNDJiMDBhNmFjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDU5NjE5MThjYWFlN2NjMTZmZWIyMGZjYWMxMDM0ZTJjNGU2Y2VkZTYzNTIwODUwZWI2NTU4ZTNiODRlOTY4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWFmMjVjOGViZTc4NjU1YjhhNGU3MDk4MjJmNzdjZjc0NzA2OWZjZjc3ZjA4ZTJlOTE4YjBjY2ZiNjlhZTNkYSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

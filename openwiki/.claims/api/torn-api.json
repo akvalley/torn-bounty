@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:70978935b52485008f8d688bc5bc41e03a57ea2690a81c809319ceadb9e843ec",
+  "claims": [
+    {
+      "id": "claim_5dd35d0d2633498b81e919cfdad32159",
+      "statement": "All Torn API calls are made exclusively from js/api.js; no other module calls fetch against api.torn.com.",
+      "evidence": [
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:b83fcb051debb7dda98456afd69cebb2a56905ebe04330340921a7d3e6445a88"
+        },
+        {
+          "resource": "repo://js/api.js#L1-L10",
+          "version": "repo-lines-v1:sha256:34180e982cea23e8e11e92c8603187e594693a26ae4549b764dd85daeb38396d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3OWFmNjVkYzBmMWUwMWEwYjAyN2E5YmFmMzI4YWRjNjViNTcwZmU3YmQ2MTBiZWE0Yzg1ODcwNTcxMmY5NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmMjFkYzNmMmVmZGQ4MmUzMDMxMTQwYWYwZDQxODNiNTM3ZTA1OGQyYjNhN2M4YzU5MjFiYjFhNDIxNmRiNzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0MTJmMjQxNTgwZWFmYTE4YWZkYmNjZjg4ZGFiZmM4NGRiZDU1MjEwZWQ1NmFjNzdmNDA0YjU1MGIzZTQ2NGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d272a44fcd0b4bfaa445c0cef18d6892",
+      "statement": "fetchAllBounties pages through /v2/torn/bounties with offset increments of 100; a page shorter than PAGE_SIZE=100 terminates the loop.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L29-L49",
+          "version": "repo-lines-v1:sha256:392c2b7d484b1bd199b58a702f1b68f1ff439e5098e0bc111b1d5c6cfacfa5b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiYjAyODY2YTQ0ZTA5YjY2MGI3NzI3OTU5NzE3NmFhYTc5NTRmMzg1ZGRkMDMwZmZkNjMzOGYxYjhhNTNlMDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYwYmU2NTBkOTM1YmFiMzk0YzVmYTIxMjIxMzRiM2VhZmU3ZDhjMmQzYmM1ZDY2NDViZjM2NWViZTM5MzQ4ZDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d883c724103a4f788078fbaf24633160",
+      "statement": "normaliseBounties maps raw v2 fields to camelCase keys and computes totalValue = reward * quantity.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L59-L76",
+          "version": "repo-lines-v1:sha256:ccc387cf451b0713240a317d259c62c0ec29b7bc5c187a984d1ea94eb822f1c7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4NzY5ZjdkODliZDY5Zjk0M2ExZTUyYmZiZWRkYzY1YzA1OGM4NTBlYmM3NzA1NDVjYzYyYWI2MzUxOWM4NmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMzMzFjYTEwNTFhYjg5NDA0MmQ4OGY0NjUzZmIzZmEyMTE2NmJkODAzZmFhNTg3YTJlNWM4MTcyNTdjNzkwMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJlNThiMDZkNmUzYzU5MmY0YTU2OWQ1NDMzYzc1ZmIzOTM3MjQ0MjhiZGI3MDY1ZDZiYzdkNTRjNDJhN2Y1ZWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a4e306721cfb4523b5e019e798d91d0b",
+      "statement": "fetchStatusBatch uses Promise.allSettled so individual per-player failures do not abort the batch.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L113-L121",
+          "version": "repo-lines-v1:sha256:112e004193d91875aed08777e390e976ba643ffabf7f70e839a06745f025464b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjRmYmQ1MDMzYWQ1NDBiOGNmMTU2YWRhNzgxNTAzMGFiNGIyZmYzMGZiODViMmNhZGJjY2Q4MWM3YTY0Yzg3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTk2YThlMjFmMGUwNDhhMjZjODgyOTdhY2NiYWI2OGIzODkwYTMyZDNlZmMxMzJjMjE4Mjc3NzI4YmZiNjA0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Y3MjYwNmE2NjE5YWNkMjY4NGEyMzI2OTQ5ZmMwN2I3ZTQ1NmRiYmFlYzQ3YTM5ODU3ODllZjk5NmQ3NTFmOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d7f068a9b48d48a79ebe982a8c655aca",
+      "statement": "Each status object includes state, description, until, rank, title, lastAction, life (current/maximum), and revivable.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L85-L104",
+          "version": "repo-lines-v1:sha256:4397aadd324ca10ef7f9cca4c5d50056b6a969ec8907dd1864b0fcb52a2bbf2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyODg0OWJmNjQ1NzlmMTcwMTJjYzU4NzVjZmZhNDZmYjgyZDc0NTJjOTM1NjgxZGQ1MTZjMjA5MGNiZTU5NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZlYjAwNjVhZGIxMzM4NGFjZTQ4MTc1MDYxZTE4MTczZWI2OTA3MmI4YmJjMmFkMGJmNjRiODc2ZmQyYWI2MDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkODdlZGVlYzlkNzhhOWYxOWU0ZGQzMGUzOTlkY2Y5ODg2ZDUyN2ZhZGY0Yjc0YWZiMTc3YTE3ZGIxNDcxYTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2fb88b147b6a4881bf7acd1129689fa6",
+      "statement": "TornApiError is a subclass of Error with an integer code property; tornErrorMessage maps codes 1, 2, 5, 6, 13 to human-readable strings.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L174-L193",
+          "version": "repo-lines-v1:sha256:0e45f28682dd1aed33bda07f759deccb09782e4f13326f7c59d55e9f033c8bd5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwMTA4MDdmNjljNzQ3YWFlMTA5ZThlMDQ5OGVkZTYwZGYxYjBiNjU5NWI1NWNmYjkzODBjNDMxN2Y5ZDAwYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZjkzMDgzYzE5NzEyMWI5ODI3MDBiYThhZmFiZDE3MjJjZjFkM2U3NDA0NTA5ZTgwZWZhMjcyNDdmNjJmMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

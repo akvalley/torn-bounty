@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:fe178e9cf7a99d82351efac21ec539ab2519e1832f483867a3a9ad3c0cd0fbc7",
+  "claims": [
+    {
+      "id": "claim_dba4c932c2834180bcbd80af2b463d8b",
+      "statement": "The app deploys to Netlify via git push to main; auto-deploy completes within ~30 seconds.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:5f18e7738270ce302482d7efb856ae12f0b58fe370437e9a0891fb8b89e53787"
+        },
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:b83fcb051debb7dda98456afd69cebb2a56905ebe04330340921a7d3e6445a88"
+        }
+      ]
+    },
+    {
+      "id": "claim_46aa675ac13443398a38c64564dc4509",
+      "statement": "Local development requires a static server (e.g. npx serve -l 8080) because ES modules cannot load over file:// protocol.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:5f18e7738270ce302482d7efb856ae12f0b58fe370437e9a0891fb8b89e53787"
+        },
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:b83fcb051debb7dda98456afd69cebb2a56905ebe04330340921a7d3e6445a88"
+        }
+      ]
+    },
+    {
+      "id": "claim_02ff1137d0eb463c949997a7579613f2",
+      "statement": "The API key must never leave the client; it is stored only in localStorage and sent only to api.torn.com and ffscouter.com.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:5f18e7738270ce302482d7efb856ae12f0b58fe370437e9a0891fb8b89e53787"
+        },
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:b83fcb051debb7dda98456afd69cebb2a56905ebe04330340921a7d3e6445a88"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:12c9a99f97d09b32ee5e429611002422c7a0680daff9d934fb65392f8d0319c7",
+  "claims": [
+    {
+      "id": "claim_78971bcecd014ee8adf22a031db9026a",
+      "statement": "scheduleNextRefresh creates two timers: a setTimeout that calls loadBounties and a 500ms setInterval that updates the countdown display.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L479-L503",
+          "version": "repo-lines-v1:sha256:e11ecf685c2d98b1197cc0b02868ec1689bfea6eae74d151831212e9ec12eaa7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiNThkZWU4NTUwNzk0OTk1YzllNzljZTc0NDAzOWQ4MjI0OTg1MDg0OGU4ZDM5OGY2Yjc2NWE0N2U5OWE5MGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3M2ZlOTZhODQwMTUyODEzMmI2MzI3MTZiNWMwNWQ0MGUyY2I3YWI3ZjZjOTkyNTFjYzFhZTkwYmU1YmJkMzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI4YWVhMjRiOThkY2VkZjE0OWVmODdlM2M1MTE2OWJkNDYzMTU0ZjM2OWVmMmJkZDE5NjI2ODA2MTE3OGM1ODcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e6cc080b8d048d9b6a2543a913da4f8",
+      "statement": "clearSchedule nulls both refreshTimeoutId and countdownIntervalId and is called at the start of every loadBounties and on clearKeyBtn click.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L226-L227",
+          "version": "repo-lines-v1:sha256:4e9383c128e0eb8ea88f69f570dddef5fbdacdbff25cbad19aa881993be5e6d9:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTMzZmE2YTk4YzI5YTk1YmY3NDk3ODQ3OWNmODg2MDM4MWQzZTY1ZDA5M2JiOTJmYjhhNWQyOGU4NTM5MjE4ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZlODUxYjBiMmJlOGQ2NTgyOTU4NWFiMjVjMzE3YjQ2MDYxNTQyYzE3Nzc3NmZhNzgyMmVhMTQxYjI3ODBhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzZlNTFlMGQwMDhmMTZjN2EyYjcwMDJlOGJjNDY1NDg3YWUyZjVhMzNiMDhmNzNmNTM1ZDAwYmYyOGI4N2ZlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTRkNWJjMmFjN2Y1YmE3NGFjNjgzYzZjMzBmMjVhNTc3OTFmMjQ4NzRjOWNmMDdlYjRkOWRhZGI0M2VkZGE4ZSJ9"
+        },
+        {
+          "resource": "repo://js/main.js#L505-L510",
+          "version": "repo-lines-v1:sha256:7430f10f2ba0aa4491f6a26df3057d1bad150905cbf94131f8dcafd06386af5a:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGIzNTExZTI3YTk0MDM2MjMxOWIxOTc3ZTZmMjYzNzMyYjIyNmU4ODhiMDQ5ZTU3NTRmMDIyMWNiZTE5NGU0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDc0NDEzY2E4MjNhMzNkNDg4YWVkOTExNzU3NWYyODRkZWRiMDgxNzI3OWJiN2M5ODFkMTg4Mjc1YzUwOGYxMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzdiMzcwOTAxNGU0YTlkZGUzZDRlMzk5ZTQ3MWU5MjI1NjdjNzc3MGJhYmRiYmVlNmFkZjY5NDU2ZWY4ZDRkNyJ9"
+        },
+        {
+          "resource": "repo://js/main.js#L92-L113",
+          "version": "repo-lines-v1:sha256:88daf4c7d0cbe91bee7f59cc34f11f90bc0170c7e193c2606ef4b4cfb92e92a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyNDMyMTg1NDFhYzgxZDJmNGMyMWViY2I1MzdhOWRlZTQ2YjY0OTRlNDgyNDc4YzFkOWViOTA3MzdiNGRhMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkZGFmOTI2YWFkYTcwYTQ1NmRjOTc0ZDU5OWJjZTVlYmFmNWE3NjgzZDNkNjA5NzViNzQ2YTQ1NGY4NDNmYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzYjIwZTg1NTg2ZTkyMjJiNDY1NmQ0MjAxZWRjZDA5ZGUzM2QwYzMwMTUyZDFhMDliNTkwYmM5Mjk3NDY1ZjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_49279b8755b14b9d83723008e10ea8db",
+      "statement": "loadBounties resets statusMap, ffMap, button labels, checked-time spans, and filter values before the fetch, so stale enrichment never shows against a new bounty set.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L231-L240",
+          "version": "repo-lines-v1:sha256:c9ee2eadf10abfd69719800c88c2b2cfb46714958635c5c9e6881fe4915cca8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3NGU3MTIwNWFjNzQxMDM3YzM0MzhhYzIwZGEwMDZjYjMxZTEzODdlNjAzNTMwZTZjZWQ5MWM4NDYwZGZkZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhNTVkNDliMWEyMjYzZjdkYjE3MmY0NjllZTdmMjQ2NTYyOWFiMjgwYTJlOGVhOWE4NjM2YWNjZDZkZjdmZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0ZDViYzJhYzdmNWJhNzRhYzY4M2M2YzMwZjI1YTU3NzkxZjI0ODc0YzljZjA3ZWI0ZDlkYWRiNDNlZGRhOGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwZTU5NjAyMTZmZjJlZDRlMDg3MmQwMGEyZWM0MmRjNDAyYzI0NzAwYzFlNzY2OGNlZWI2MTkyM2YwYmI2NjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6832d87d0b9d4078b8e4026a2cb0f37d",
+      "statement": "After every loadBounties fetch (success or error), scheduleNextRefresh is called in finally to restart the countdown.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L255-L258",
+          "version": "repo-lines-v1:sha256:ae81ce4a8b0399acf7e430204a7d198247881cbc33f640a935706d0e8acf7c5a:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZiOWFiZjBiYTJlMWI5MWM3ZDg3YTI4MzY0MTcxNTU3NTY2MjJiMGVmOWNjMTM2YWVhNjg1ZTc0YjNiMTgyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTU2NjhkODVmMjVjZWY0YzM5Y2QzZDRlNzIxMGZjY2I2NmYyM2EwM2JmN2Q1MjYzZDY2ZDRkNzU2ZTFlZDMxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTExMGY1MTA1NDViMDRhNGIyMDc1MjQzNjNjZDA2MTdjY2UyNGU2NTEyY2YwMGY1NWEyMmQyNmQ2YjE0MmEyOSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

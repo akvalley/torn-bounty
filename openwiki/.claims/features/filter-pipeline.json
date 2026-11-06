@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:75a11cf5bd62ce1c9036e8a0764d807abb681625fcbcc836fadac127c13f7592",
+  "claims": [
+    {
+      "id": "claim_99ec16f004a349cfb4a9fa03eabb1fa3",
+      "statement": "applyFiltersAndRender reads 11 filter control values, persists them, filters allBounties, sorts the result, writes currentFiltered, then calls renderBounties followed by all update helpers.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L261-L313",
+          "version": "repo-lines-v1:sha256:95ec20cd4fc128a011aac1a88f514af5780fda27d12675ed9d3099a684b63397:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMzlhNzA4YjUwNzg0MDcxZmRmZDAxMzNlNjc1MWUwOWZlNTFkYjQwZmQ0NWY0YjRmZDk2NmQ4NTE4Y2RhODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxOWU2YTAyZTVhOWZjNmYwYTZlNzlkYzM5YjVhZWQ0ZTc5ZjcwNDBmOThmZDQxZjI2ZDVjYTRmNDcwZmVkNDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVlYzllNDY2NGU1MTYyODhkODQ2MmE0NWNiZGM2MmRlZjE2Njk0YWNiYTdkYTliOGI3ZDIzNmEyYWU2OTFlY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_beef44239712487abb9c8424f9ee2280",
+      "statement": "Status and Location filters skip a bounty only when statusMap[b.id] exists; targets with no status data always pass.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L298-L303",
+          "version": "repo-lines-v1:sha256:02a43094eb788a2d8721f61664ae43f8fe48e453b54e693b1a8db1b5d796fd3d:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjFjMDIxMDZhMTk4YzRmN2YwMWRlMzZjNmVlMjFhZjZmYjlkYWZiNzQzNjAzZGI3NzU0OTdmYjE0ODllZTY1NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDMyMDNlNzE1ZTIxYTA3Y2JhODU4NTA5YTlhMDdmN2QwOTNmYjAzMjBiMzFlYjQ0ZTM1YjkwYjg5YmE4NzU1MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDE1MTdiMjBjZTllMjIxMjkyYzI5NTMyMDg4MThlYTZmMzRmMGJiZmE0ZDZhZWM0YjExMzJlM2JmNTc4N2VlZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ef61c1710164cfca4968c0f6ce8297a",
+      "statement": "Both status-gated filters (Status select and Location select) are disabled when statusMap is empty or visibleCount > 100; they re-disable automatically on each applyFiltersAndRender call.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L380-L383",
+          "version": "repo-lines-v1:sha256:95fbe5732186df26558b3d30a4f439ad8f8afd7450d2145c97d43c8aed152080:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJmOTQwZmY0OWI0Yzg2YmM5ZTllYjE5NGM0MTM0OThiNjFkMjQ4ODg2MzIxZTgwZDJmYThkY2I3OTY0OTlhZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTdmYWQxZDM4NGMxM2YyYmY5ZWU1ZWVkNzNkOTk0MDQyMmU2MGQ4Y2I3Zjk5Y2M5ZTJmZTRlZTRlMmQwNmEwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTQ5MmY4NTg2NTdkNzExODBkZDYwYzEyMTY4MmM1OGQ3NTI4NGFiZWYwZGEzOTI2ZjZhOTY0MWIzMmRmMjkwYSJ9"
+        },
+        {
+          "resource": "repo://js/main.js#L385-L408",
+          "version": "repo-lines-v1:sha256:8eb5b6641917fb0dde5ee3b37b28af7e776e97c83c801a2091142dba9d722544:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZDQ3Y2ZjN2E2NzdjNWQ0OGM0M2JlNjRhYTlhZWJlNzE0Yzg1YzUwNmNjM2M0NWUxZWNiNTJlOWY5MDk3OWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5NGZlYmUxYmQwMWJiMTY2Y2M3NzVlZTRmNjU2MThiYzgwZDhkYTQ4ODQ4NmMxODhkNDgxNWM0NDk3MWM2ZGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmODg0YjI4OGFkMTU5NzgzMzYwMmI2OGQ4OWMyYzYxMTQ3NzQ5ZGE4ZmQyMDBkZGYwZWEzZTBlYzYzYjEzN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMzg2ODk1MzAwOGE0YTQzZGViMmEyZmIxM2Q4YjYzMDA2MDdkZmU2MmI0MzFhOGMzYThiYmIzYzE2N2M4ZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9462c0a2b084476891d40accc39ea61a",
+      "statement": "updateFilterToggleBadge counts 11 non-default filter dimensions and renders a numeric badge on the filter-toggle button.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L349-L368",
+          "version": "repo-lines-v1:sha256:2d66b03c66c5649ae95915906560dc4a821b31f8273cf34970cf5b32f7b1c5d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwZWQxMmY2MjE3YWJkYzY1MDE2MGIwNmFmM2I5ZWNhODc2MGNlN2JhYzgwNzg2YTJkMGUzOTk1NjhhMjQ4ZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyMDQxOGIzZDkzYjRlYmYzOGM3NGUxYzViNDE1OGEyM2IzYTA3ZmQ1MzgyMGExODNmNmQ3Y2EzOTI5ZTI4NzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1NmYxMjVmM2EyYzllOTBmOGEzZTZlNmVlYWE4ZTI1MmU2ZmUwYTU4NmE5NmFjM2ZhNGE4OTMxZGY4ZWQ0OGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4YTBjYzJhNDg3ZTZiMGQxNjliYmNmY2M4MGIwM2ZiOTczMTI2NDIxZTZmYzIzNmVjMmE5MjkxN2I2N2I3NTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6071bd9fa8484831beb4103b0f4215ca",
+      "statement": "resetFiltersBtn resets all 11 controls to defaults, calls saveFilters({}), then applyFiltersAndRender.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L132-L146",
+          "version": "repo-lines-v1:sha256:de83a95c3884dd3a7be1fe6d7d5703d690f493fa2ea2b7c5600f6688929ddd61:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkNWIyNzU0MjQxNjZhNTNlZGNhNWU1ZTRlMTk3NmFlMzRjMWFlMzQwN2NjOTE2MWM5YmQ3YzRhYWJiNTk1YmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmODkzZTM1Njc0ZWVlYzhlZTk5MTNmOTc4MjEzODg2MDliMGM5NWYwODJjOGQ0ZjJjYTczMmM0ZjE0NjhmMGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk1MzZjZWE3MGUzMjY5NGJkOTNkMWEwMjg3Y2E1MjRiOGQ5NzZkMTE5MDkyMTBkYjNhOTFkZTg0MDc0OGNlYzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9772f137e1814a279c9b444aba04a5dd",
+      "statement": "Saved Location is restored by applyFilterValues only if the saved value matches an existing option in the dynamic select.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L345-L346",
+          "version": "repo-lines-v1:sha256:91795a2edadf768496c0e6d8b9eef3527d3b3f266e40e1adf9f69f529faa5f94:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDIzYmIzMTJjYTlhZmUxNTAxM2NiNWUxNGFiMjgzNGFlMWNhZWYyNjk2MWVjMzU5ZmFlOGFhYTUwMzIwYzFkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDhlMjIxMmNhYmZlMWNhMDNmZWVmODZkZWZhZmI1NGE0NmEyNjA3MzFhODQ0MmUwODVhNjI1NzA2OGM0NjM2YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWVkN2E1YTE1M2NlMTFkZjYwNmY5ZmFkYTNlYjI2ODUzZmRmYWRlMjA2M2U5YzdlNTUyOTYzNDU0NjNkYWI1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNThhZjAwYmEwNmViNDQ2ZWIwYzJmZDc3ZWZjZjg3ZTVjNTQxMzA1NjhiODcwYmM4MjI3MGFkOWE0ZDJhYTE5MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}

@@ -45,6 +45,20 @@ torn/
     └── main.js       # App init and wiring
 ```
 
+## Deployment
+
+- **Live URL:** https://torn-bounty-hunter.netlify.app
+- **Host:** Netlify (auto-deploys from `main` branch on GitHub)
+- **Repo:** https://github.com/akvalley/torn-bounty
+
+To deploy changes:
+```bash
+git add css/ js/ index.html
+git commit -m "describe change"
+git push
+```
+Netlify will redeploy automatically within ~30 seconds.
+
 ## Development Commands
 
 ```bash
@@ -58,3 +72,11 @@ npx serve -l 8080
 - No inline JS in HTML
 - API key read from `localStorage` key `torn_api_key`
 - All `api.torn.com` calls go through `js/api.js` only — no fetch calls elsewhere
+
+<!-- OPENWIKI:START -->
+
+## OpenWiki
+
+@AGENTS.md
+
+<!-- OPENWIKI:END -->

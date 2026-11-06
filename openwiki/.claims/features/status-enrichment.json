@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:2ad1d808545239dae25e02f1de216d229681ac684766a3fc88cdebf66d92dd27",
+  "claims": [
+    {
+      "id": "claim_4000c7e933d945ab9f3903c36a35672d",
+      "statement": "Check Status is gated by STATUS_CHECK_LIMIT=100; updateCheckStatusBtn disables the button when visibleCount > 100 or no key exists.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L411-L422",
+          "version": "repo-lines-v1:sha256:63db7aa1c6dfa16e289327eb452249eb72ecc25aa207e129c0d3019626785b2c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyZjJhMTU2NGJlYjBkYjU2MTQ1NWFhOTM1MmRlYmU2ZGM1MTk5MWVkMGQ2MTdjODFiOTllNzk1YzU5MWM3OWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyZmYyNjNjYTAwODY4NDI0NjU4YjAwOGExNmFiNjQ5M2M4ZjFiOWIxMzQ1NWNiNGM1MDViZjJkOTlmZTY0OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzNjQzNjM0Nzc5YTc0ZDA2NmZkZDQzNWU2ZGZjYzQ3MmVmOWQyNmU5ZmUzOTU2YjM3YjkzYjExNzIwNDVmMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_85b15ee437804ac0b42e8cf2f869acad",
+      "statement": "fetchStatusBatch uses Promise.allSettled so per-player failures are silently skipped and do not abort the batch.",
+      "evidence": [
+        {
+          "resource": "repo://js/api.js#L113-L121",
+          "version": "repo-lines-v1:sha256:112e004193d91875aed08777e390e976ba643ffabf7f70e839a06745f025464b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjRmYmQ1MDMzYWQ1NDBiOGNmMTU2YWRhNzgxNTAzMGFiNGIyZmYzMGZiODViMmNhZGJjY2Q4MWM3YTY0Yzg3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTk2YThlMjFmMGUwNDhhMjZjODgyOTdhY2NiYWI2OGIzODkwYTMyZDNlZmMxMzJjMjE4Mjc3NzI4YmZiNjA0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Y3MjYwNmE2NjE5YWNkMjY4NGEyMzI2OTQ5ZmMwN2I3ZTQ1NmRiYmFlYzQ3YTM5ODU3ODllZjk5NmQ3NTFmOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8fa0d716fabe497bb54cca5452c54c16",
+      "statement": "statusMap is populated additively via Object.assign; a Re-check overwrites entries for the same ID but retains entries for other targets.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L173-L173",
+          "version": "repo-lines-v1:sha256:5b176342ec5543e7fd0eaa766973379f3b505117876f1062903d0cd3b1cf369b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWIxNzYzNDJlYzU1NDNlN2ZkMGVhYTc2Njk3MzM3OWYzYjUwNTExNzg3NmYxMDYyOTAzZDBjZDNiMWNmMzY5YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWIxNzYzNDJlYzU1NDNlN2ZkMGVhYTc2Njk3MzM3OWYzYjUwNTExNzg3NmYxMDYyOTAzZDBjZDNiMWNmMzY5YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWVjN2Y5N2JjNjc5YjU1NDM0NGJiODNlY2FlZTkxMmZjMjhlOGExNWRjMGEyNjE3ZDEyMzVhN2M4NjQ3ZjkwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjUyZGRiMmFjY2U3NjU3OWFmZjJhYmZkZGRiNmYzZmVmY2E1YzUxYTNhNTFkZWM4MmJlNTA3Y2QwZDczMjE5ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cdf043da9cc2407fb130d8d2e89bb484",
+      "statement": "extractLocation maps non-traveling targets to 'Torn City', outbound travelers to the destination, and inbound ('Returning to') back to 'Torn City'.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L371-L378",
+          "version": "repo-lines-v1:sha256:fcd574d025c5fc4514968eee1da13ad8a2900b3a4dce96a9095ca69da5d17ec3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDhiYTM1OWI5MjFlMGZjZjQ5NjAyZjU2MDYxNDA0ZmI5N2FlNzM3YmUyZGVjNmEwYWMxZmUyN2I3MjVjMTI5OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjc4OThlZDNiZTc4MmIzNjg1MWZjOWFiZDdmZDlmMDkyYWZkZTRmNjkxOWU4YjQ1N2IyOWUzNmViMDRlNjk0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODJjNGU3NThkZmE0ZGMzZGIyYTNlYzU5MzBiYjVhNTFlMzBjMDcxMmM5YzMyZDRhYmIyMDA2YTA0ZDE0ZGJmYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_68bd14d74eb54446b8f90b13a912b5de",
+      "statement": "updateLocationOptions rebuilds the Location dropdown from statusMap values and restores the prior selection if it still exists.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L385-L408",
+          "version": "repo-lines-v1:sha256:8eb5b6641917fb0dde5ee3b37b28af7e776e97c83c801a2091142dba9d722544:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZDQ3Y2ZjN2E2NzdjNWQ0OGM0M2JlNjRhYTlhZWJlNzE0Yzg1YzUwNmNjM2M0NWUxZWNiNTJlOWY5MDk3OWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5NGZlYmUxYmQwMWJiMTY2Y2M3NzVlZTRmNjU2MThiYzgwZDhkYTQ4ODQ4NmMxODhkNDgxNWM0NDk3MWM2ZGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmODg0YjI4OGFkMTU5NzgzMzYwMmI2OGQ4OWMyYzYxMTQ3NzQ5ZGE4ZmQyMDBkZGYwZWEzZTBlYzYzYjEzN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMzg2ODk1MzAwOGE0YTQzZGViMmEyZmIxM2Q4YjYzMDA2MDdkZmU2MmI0MzFhOGMzYThiYmIzYzE2N2M4ZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_afcf78c92b034186ae49ad326cdfe590",
+      "statement": "statusMap is cleared to {} at the start of every loadBounties call.",
+      "evidence": [
+        {
+          "resource": "repo://js/main.js#L231-L231",
+          "version": "repo-lines-v1:sha256:274e71205ac741037c3438ac20da006cb31e1387e603530e6ced91c8460dfdf6:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjc0ZTcxMjA1YWM3NDEwMzdjMzQzOGFjMjBkYTAwNmNiMzFlMTM4N2U2MDM1MzBlNmNlZDkxYzg0NjBkZmRmNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjc0ZTcxMjA1YWM3NDEwMzdjMzQzOGFjMjBkYTAwNmNiMzFlMTM4N2U2MDM1MzBlNmNlZDkxYzg0NjBkZmRmNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTRkNWJjMmFjN2Y1YmE3NGFjNjgzYzZjMzBmMjVhNTc3OTFmMjQ4NzRjOWNmMDdlYjRkOWRhZGI0M2VkZGE4ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmM0NGI5Yzk2NWI2MDQwNDQ2MWE5M2YyMzAwZWJjYmI4YjNjNTYzNWJlMGYxZWVkY2M4OTg0NzRmZmI0YTI4OCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-06T04:41:53.634Z"
+  }
+}
