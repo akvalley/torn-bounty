@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f1117"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#e8a838"/>
+  <!-- target icon circle -->
+  <circle cx="600" cy="210" r="90" fill="none" stroke="#e8a838" stroke-width="8"/>
+  <circle cx="600" cy="210" r="58" fill="none" stroke="#e8a838" stroke-width="8"/>
+  <circle cx="600" cy="210" r="26" fill="#e8a838"/>
+  <line x1="600" y1="100" x2="600" y2="135" stroke="#e8a838" stroke-width="8" stroke-linecap="round"/>
+  <line x1="600" y1="275" x2="600" y2="320" stroke="#e8a838" stroke-width="8" stroke-linecap="round"/>
+  <line x1="490" y1="210" x2="525" y2="210" stroke="#e8a838" stroke-width="8" stroke-linecap="round"/>
+  <line x1="675" y1="210" x2="710" y2="210" stroke="#e8a838" stroke-width="8" stroke-linecap="round"/>
+  <!-- title -->
+  <text x="600" y="390" font-family="Segoe UI, system-ui, sans-serif" font-size="64" font-weight="700" fill="#e2e4ec" text-anchor="middle">Torn Bounty Hunter</text>
+  <!-- subtitle -->
+  <text x="600" y="456" font-family="Segoe UI, system-ui, sans-serif" font-size="30" fill="#7a7f9a" text-anchor="middle">Filter · Status · Fair Fight · Hunt</text>
+  <!-- url -->
+  <text x="600" y="560" font-family="Segoe UI, system-ui, sans-serif" font-size="22" fill="#a87520" text-anchor="middle">torn-bounty-hunter.netlify.app</text>
+</svg>

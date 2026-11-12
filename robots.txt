@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://torn-bounty-hunter.netlify.app/sitemap.xml
